@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Direction Dashboard — 26 S/S</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Noto Sans KR','Inter',sans-serif;
+  background: #000000;
+  color: #374151;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid #333333;
+  background: #000000;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header-logo {
+  font-family: 'Inter'; font-weight: 800; font-size: 18px;
+  color: #ffffff; letter-spacing: 1px; text-transform: uppercase;
+}
+.header-divider { width:1px; height:20px; background:#555555; }
+.header-title { font-size:17px; color:#d1d5db; font-weight:500; }
+.header-right { display: flex; align-items: center; gap: 8px; }
+.header-badge {
+  padding: 5px 14px; border-radius: 100px;
+  background: #ecfdf5; color: #059669;
+  font-size: 14px; font-weight: 700; letter-spacing: 1px;
+  border: 1px solid #a7f3d0;
+}
+
+/* ── MAIN ── */
+.main { padding: 0; max-width: none; margin: 0; }
+.section-block {
+  padding: 32px 140px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.section-block.brand-intro {
+  background: #000000;
+  max-width: none;
+  padding: 32px 140px;
+}
+.section-block.brand-intro .s-title {
+  color: #ffffff;
+}
+.section-block.season-concept {
+  background: #ffffff;
+  max-width: none;
+  padding: 32px 140px;
+}
+.section-block.season-concept .s-title {
+  color: #000000;
+}
+
+/* ── SECTION TITLE ── */
+.s-title {
+  font-size: 34px; font-weight: 900; letter-spacing: 1px;
+  color: #059669; margin-bottom: 20px;
+}
+
+/* ══════════════════════════════════════ */
+/* DASHBOARD CARDS — 5개 브랜드 한눈 비교 */
+/* ══════════════════════════════════════ */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 48px;
+}
+.dash-card {
+  background: #e8e8e8;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 28px 22px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.dash-card.clickable { cursor: pointer; }
+.dash-card.clickable:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.dash-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent);
+}
+.dash-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.dc-num {
+  font-family: 'Inter'; font-size: 48px; font-weight: 900;
+  color: #000000; letter-spacing: -1px; margin-bottom: 2px;
+  line-height: 1;
+}
+.dc-brand {
+  font-family: 'Inter'; font-size: 26px; font-weight: 800;
+  color: #000000; margin-bottom: 2px; letter-spacing: -0.3px;
+}
+.dc-slogan {
+  font-size: 14px; color: #9ca3af; margin-bottom: 18px;
+  line-height: 1.4; min-height: 20px; font-style: italic;
+}
+.dc-divider { height:1px; background:#e5e7eb; margin: 14px 0; }
+
+.dc-row { margin-bottom: 2px; }
+.dc-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: #6b7280; margin-bottom: 8px;
+}
+.dc-value { font-size: 15px; color: #4b5563; line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; }
+.dc-value strong { color: #1e293b; font-weight: 700; }
+
+/* Season Keywords (3개 제한) */
+.dc-keywords { display: flex; flex-wrap: wrap; gap: 5px; }
+.dc-kw {
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 13px; font-weight: 500;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+.dc-kw.primary {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #059669;
+  font-weight: 600;
+}
+.dc-kw.core {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #2563eb;
+  font-weight: 600;
+}
+.dc-desc {
+  font-size: 15px; color: #374151; line-height: 1.75;
+  background: #f8fafc; border-left: 3px solid var(--accent, #e5e7eb);
+  padding: 10px 12px; border-radius: 0 8px 8px 0;
+  margin-top: 2px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.dc-keywords { gap: 6px; }
+.dc-kw { padding: 4px 12px; font-size: 14px; }
+
+/* ── Collapsible Section Toggle ── */
+.dc-toggle-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; user-select: none;
+  padding: 1px 0;
+}
+.dc-toggle-btn .dc-label { margin-bottom: 0; pointer-events: none; font-size: 14px; letter-spacing: 0.5px; }
+.dc-toggle-arrow {
+  font-size: 14px; color: #22c55e;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.dc-toggle-btn.open .dc-toggle-arrow {
+  transform: rotate(180deg);
+}
+.dc-collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.dc-collapsible.open {
+  opacity: 1;
+}
+.dc-theme {
+  font-size: 16px; color: #374151; margin-bottom: 4px;
+  word-break: keep-all; overflow-wrap: break-word;
+  font-weight: 600; letter-spacing: -0.2px;
+}
+.dc-refs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.dc-ref {
+  padding: 4px 10px; border-radius: 4px;
+  font-size: 13px; font-weight: 500;
+  background: #fefce8; border: 1px solid #fde68a;
+  color: #92400e; text-decoration: none;
+  transition: background 0.2s;
+}
+.dc-ref:hover { background: #fef3c7; }
+.dc-kw.ext {
+  background: #f5f3ff; border-color: #ddd6fe;
+  color: #7c3aed; font-weight: 500;
+}
+
+/* ── Brand Details: Monochrome (No Color) ── */
+.dash-card.clickable::before { display: none; }
+.dash-card.clickable:hover {
+  border-color: #9ca3af;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+.dash-card.clickable .dc-num { color: #000000; }
+.dash-card.clickable .dc-brand { color: #000000; font-size: 28px; font-weight: 900; }
+.dash-card.clickable .dc-slogan { color: #6b7280; font-weight: 400; }
+.dash-card.clickable .dc-label { color: #111827; font-weight: 800; }
+.dash-card.clickable .dc-desc {
+  border-left: none; background: transparent;
+  color: #111827; padding: 0; font-weight: 400;
+}
+.dash-card.clickable .dc-kw.core {
+  background: #f3f4f6; border-color: #d1d5db;
+  color: #111827; font-weight: 600;
+}
+.dash-card.clickable .dc-value { color: #111827; font-weight: 500; }
+
+
+/* ══════════════════════════════════════ */
+/* COMPARISON MATRIX — 테이블 비교        */
+/* ══════════════════════════════════════ */
+.matrix {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 48px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+.matrix th, .matrix td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 17px;
+  vertical-align: top;
+  color: #000000;
+}
+.matrix thead th {
+  background: #e0e0e0;
+  font-family: 'Inter'; font-size: 16px; font-weight: 700;
+  color: #000000; letter-spacing: 0.5px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.matrix thead th.brand-col {
+  color: #000000; font-size: 17px; font-weight: 800;
+}
+.matrix tbody tr { background: #ffffff; transition: background 0.15s; }
+.matrix tbody tr:hover { background: #f9fafb; }
+.matrix tbody tr:last-child td { border-bottom: none; }
+.matrix td strong { color: #059669; font-weight: 700; }
+.matrix .row-label {
+  font-size: 18px; font-weight: 800; color: #000000;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  width: 140px; background: #e0e0e0;
+  border-right: 1px solid #f3f4f6;
+  vertical-align: middle;
+  text-align: center;
+}
+.ref-link {
+  color: #374151; text-decoration: none; font-size: 14px;
+  border-bottom: 1px dashed #d1d5db;
+  transition: all 0.15s;
+}
+.ref-link:hover { color: #059669; border-bottom-color: #059669; }
+.matrix .cell-kw {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.matrix .kw-tag {
+  padding: 2px 8px; border-radius: 4px; font-size: 13px;
+  background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0;
+}
+
+/* ══════════════════════════════════════ */
+/* DETAIL PANELS — 클릭 시 펼침          */
+/* ══════════════════════════════════════ */
+.detail-panels { display: flex; flex-direction: column; gap: 12px; }
+
+.detail-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.detail-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.detail-toggle:hover { background: #f9fafb; }
+.dt-left { display: flex; align-items: center; gap: 16px; }
+.dt-accent {
+  width: 4px; height: 28px; border-radius: 2px;
+  background: var(--accent);
+}
+.dt-brand {
+  font-family: 'Inter'; font-size: 18px; font-weight: 700;
+  color: #1e293b;
+}
+.dt-theme {
+  font-size: 15px; color: #9ca3af; margin-left: 8px;
+}
+.dt-arrow {
+  font-size: 21px; color: #9ca3af;
+  transition: transform 0.25s;
+}
+.detail-panel.open .dt-arrow { transform: rotate(180deg); }
+
+.detail-body {
+  display: none;
+  padding: 0 24px 24px;
+  border-top: 1px solid #f3f4f6;
+}
+.detail-panel.open .detail-body { display: block; padding-top: 24px; }
+
+.db-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.db-block {}
+.db-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: #9ca3af; margin-bottom: 8px;
+}
+.db-text { font-size: 15px; color: #6b7280; line-height: 1.7; }
+.db-text strong { color: #374151; }
+
+.db-keywords { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.db-kw {
+  padding: 3px 10px; border-radius: 4px; font-size: 13px;
+  border: 1px solid #e5e7eb; color: #6b7280; background: #f9fafb;
+}
+.db-kw.core {
+  border-color: #a7f3d0;
+  color: #059669; font-weight: 600;
+  background: #ecfdf5;
+}
+
+.db-refs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.db-ref {
+  padding: 4px 12px; border-radius: 6px; font-size: 13px;
+  background: #f9fafb; border: 1px solid #e5e7eb;
+  font-family: 'Inter'; color: #4b5563;
+  text-decoration: none; transition: all 0.15s; cursor: pointer;
+}
+.db-ref:hover { background: #ecfdf5; border-color: #a7f3d0; color: #059669; }
+
+.db-philosophy {
+  grid-column: 1 / -1;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px 24px;
+  font-size: 15px; line-height: 1.8; color: #6b7280;
+  white-space: pre-line;
+  margin-top: 8px;
+}
+
+/* Items list (for PS) */
+.db-items { margin-top: 8px; }
+.db-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px; color: #6b7280; line-height: 1.6;
+}
+.db-item:last-child { border-bottom: none; }
+.db-item strong { color: #374151; }
+
+/* ── Custom Keywords (추가 키워드) ── */
+.ck-section { margin-top: 4px; }
+.ck-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: #d97706; margin-bottom: 6px;
+}
+.ck-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.ck-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 13px; font-weight: 500;
+  background: #fffbeb; border: 1px solid #fde68a;
+  color: #b45309;
+}
+.ck-tag-x {
+  cursor: pointer; font-size: 13px; font-weight: 700;
+  color: #d97706; line-height: 1;
+  margin-left: 2px;
+}
+.ck-tag-x:hover { color: #dc2626; }
+.ck-input-wrap {
+  display: flex; gap: 4px;
+}
+.ck-input {
+  flex: 1; padding: 5px 10px;
+  border: 1px solid #e5e7eb; border-radius: 8px;
+  font-size: 13px; font-family: inherit;
+  background: #f9fafb; color: #374151;
+  outline: none; min-width: 0;
+}
+.ck-input:focus { border-color: #fbbf24; box-shadow: 0 0 0 2px rgba(251,191,36,0.15); }
+.ck-input::placeholder { color: #d1d5db; }
+.ck-add-btn {
+  padding: 4px 10px; border-radius: 8px;
+  border: 1px solid #bbf7d0; background: #f0fdf4;
+  color: #15803d; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.15s;
+}
+.ck-add-btn:hover { background: #dcfce7; border-color: #86efac; }
+.ck-header { display: flex; align-items: center; justify-content: space-between; }
+.ck-clear {
+  font-size: 12px; color: #d1d5db; cursor: pointer;
+  border: none; background: none; font-family: inherit;
+  padding: 2px 0; transition: color 0.15s;
+}
+.ck-clear:hover { color: #ef4444; }
+
+/* ── Custom Ref Brands (참고 브랜드 추가) ── */
+.cr-section { margin-top: 4px; }
+.cr-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.cr-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 13px; font-weight: 500;
+  background: #f0fdf4; border: 1px solid #bbf7d0;
+  color: #15803d; font-family: 'Inter','Noto Sans KR',sans-serif;
+}
+.cr-tag-x {
+  cursor: pointer; font-size: 13px; font-weight: 700;
+  color: #22c55e; line-height: 1; margin-left: 2px;
+}
+.cr-tag-x:hover { color: #dc2626; }
+.cr-add-btn {
+  border-color: #bbf7d0 !important; background: #f0fdf4 !important;
+  color: #15803d !important;
+}
+.cr-add-btn:hover { background: #dcfce7 !important; border-color: #86efac !important; }
+
+/* ══════════════════════════════════════ */
+/* TARGET AGE CHART                      */
+/* ══════════════════════════════════════ */
+.age-chart { margin-bottom: 48px; }
+.age-chart-inner {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 28px 28px 20px; position: relative;
+}
+.age-axis {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: #9ca3af; font-family: 'Inter';
+  padding: 0 0 8px; border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 14px;
+}
+.age-bar-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px;
+}
+.age-bar-label {
+  width: 90px; font-family: 'Inter'; font-size: 14px;
+  font-weight: 700; color: #374151; text-align: right;
+  flex-shrink: 0;
+}
+.age-bar-track {
+  flex: 1; height: 24px; background: #f9fafb;
+  border-radius: 6px; position: relative; overflow: hidden;
+  border: 1px solid #f3f4f6;
+}
+.age-bar-fill {
+  position: absolute; top: 2px; bottom: 2px;
+  border-radius: 4px; opacity: 0.75;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: #fff;
+  letter-spacing: 0.3px; white-space: nowrap;
+}
+
+/* ══════════════════════════════════════ */
+/* KEYWORD OVERLAP                       */
+/* ══════════════════════════════════════ */
+.overlap-section { margin-bottom: 48px; }
+.overlap-inner {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 24px 28px;
+}
+.overlap-grid {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+}
+.overlap-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 14px; font-weight: 600;
+  background: #fef3c7; border: 1px solid #fde68a; color: #92400e;
+}
+.overlap-chip .overlap-brands {
+  font-size: 12px; font-weight: 400; color: #b45309;
+}
+.no-overlap {
+  font-size: 15px; color: #9ca3af; padding: 8px 0;
+}
+
+/* ══════════════════════════════════════ */
+/* MEMO / NOTES                          */
+/* ══════════════════════════════════════ */
+.memo-section { margin-bottom: 48px; }
+.memo-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+}
+.memo-card {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 18px 16px; position: relative;
+}
+.memo-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--accent); border-radius: 12px 12px 0 0;
+}
+.memo-brand {
+  font-family: 'Inter'; font-size: 15px; font-weight: 700;
+  color: #1e293b; margin-bottom: 10px;
+}
+.memo-textarea {
+  width: 100%; min-height: 80px; border: 1px solid #e5e7eb;
+  border-radius: 8px; padding: 10px; font-size: 14px;
+  font-family: inherit; color: #374151; background: #f9fafb;
+  resize: vertical; outline: none; line-height: 1.6;
+}
+.memo-textarea:focus { border-color: #059669; box-shadow: 0 0 0 2px rgba(5,150,105,0.1); }
+.memo-saved {
+  font-size: 12px; color: #9ca3af; margin-top: 6px; text-align: right;
+  min-height: 14px;
+}
+
+/* ══════════════════════════════════════ */
+/* TOOLBAR (데이터 백업)                   */
+/* ══════════════════════════════════════ */
+.toolbar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px; flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.tb-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid #e5e7eb; background: #fff;
+  font-size: 14px; font-weight: 500; color: #4b5563;
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+}
+.tb-btn:hover { border-color: #059669; color: #059669; background: #ecfdf5; }
+.tb-btn svg { width: 14px; height: 14px; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center; padding: 40px;
+  border-top: 1px solid #333333;
+  color: #666666; font-size: 13px; letter-spacing: 2px;
+  background: #000000;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">FMJ International</div>
+    <div class="header-divider"></div>
+    <div class="header-title">Brand Direction Dashboard</div>
+  </div>
+  <div class="header-right">
+    <button class="tb-btn" onclick="exportData()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      데이터 백업
+    </button>
+    <button class="tb-btn" onclick="document.getElementById('import-file').click()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      데이터 복원
+    </button>
+    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+    <button class="tb-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      인쇄 / PDF
+    </button>
+    <div class="header-badge">26 S/S</div>
+  </div>
+</header>
+
+<div class="main">
+
+<div class="section-block brand-intro">
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 1: DASHBOARD OVERVIEW (3초 안에 파악)      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="s-title">브랜드 소개</div>
+
+<div class="dash-grid">
+
+  <!-- FEPL -->
+  <div class="dash-card clickable">
+    <div class="dc-num">01</div>
+    <div class="dc-brand">FEPL</div>
+    <div class="dc-slogan">"시간을 함께하는 옷, 페플."</div>
+    <div class="dc-theme">모던 유틸리티 워크웨어</div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">브랜드 철학</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-desc"><br>스트릿과 클래식의 감성을 바탕으로, 현대적 실용미를 담은 모던 유틸리티 웨어를 만든다. 일상과 작업의 경계를 넘어, 오래 입을수록 가치가 드러나는 브랜드. "Real Work, Real Wear." — 일과 일상의 경계를 허무는 실용적 리얼 유틸리티.<br><br></div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">핵심 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw core">스트릿</span><span class="dc-kw core">클래식</span><span class="dc-kw core">내구성</span><span class="dc-kw core">실용성</span><span class="dc-kw core">워크웨어</span><span class="dc-kw core">빅사이즈</span><span class="dc-kw core">작업복</span><span class="dc-kw core">기능성</span><span class="dc-kw core">모던유틸리티</span><span class="dc-kw core">비비드</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">확장 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw ext">지속가능성</span><span class="dc-kw ext">헤리티지</span><span class="dc-kw ext">레이어링</span><span class="dc-kw ext">다목적성</span><span class="dc-kw ext">스트럭쳐핏</span><span class="dc-kw ext">모듈웨어</span><span class="dc-kw ext">타임리스</span><span class="dc-kw ext">이지매치</span><span class="dc-kw ext">필드웨어</span><span class="dc-kw ext">무심한멋</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">참고 브랜드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-refs">
+          <a href="https://www.uniqlo.com" target="_blank" class="dc-ref">UNIQLO</a><a href="https://www.champion.com" target="_blank" class="dc-ref">CHAMPION</a><a href="https://www.carhartt-wip.com" target="_blank" class="dc-ref">Carhartt WIP</a><a href="https://www.dickies.com" target="_blank" class="dc-ref">Dickies</a><a href="https://www.thenorthface.com" target="_blank" class="dc-ref">TNF Work</a><a href="https://apresse.jp" target="_blank" class="dc-ref">A.PRESSE</a>
+        </div>
+      </div>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-label">타겟</div>
+      <div class="dc-value"><strong>25-45세</strong><br>실용성과 내구성을 중시하는 직장인</div>
+    </div>
+  </div>
+
+  <!-- JEMUT -->
+  <div class="dash-card clickable">
+    <div class="dc-num">02</div>
+    <div class="dc-brand">JEMUT</div>
+    <div class="dc-slogan">"하나를 사도 제대로"</div>
+    <div class="dc-theme">감성 캐주얼 데일리웨어</div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">브랜드 철학</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-desc"><br>하나를 사도 제대로, 가장 필요한 옷을 제대로 만드는 브랜드. 기본에 충실한 품질과 절제된 디자인, 실용 중심의 감성 캐주얼을 제안하는 데일리웨어 기반 남친룩 브랜드. 가성비와 실용성을 바탕으로, 유니섹스 감성의 깔끔한 데일리웨어를 제안한다.<br><br></div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">핵심 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw core">데일리웨어</span><span class="dc-kw core">남친룩</span><span class="dc-kw core">가성비</span><span class="dc-kw core">유니섹스</span><span class="dc-kw core">모던클래식</span><span class="dc-kw core">컨템포러리</span><span class="dc-kw core">이지포멀</span><span class="dc-kw core">베이직</span><span class="dc-kw core">OOTD</span><span class="dc-kw core">TPO</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">확장 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw ext">이지스타일링</span><span class="dc-kw ext">에센셜</span><span class="dc-kw ext">뉴스탠다드</span><span class="dc-kw ext">웨어러블</span><span class="dc-kw ext">클린룩</span><span class="dc-kw ext">가심비</span><span class="dc-kw ext">합리적</span><span class="dc-kw ext">시티캐주얼</span><span class="dc-kw ext">밸런스베이직</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">참고 브랜드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-refs">
+          <a href="https://www.uniqlo.com" target="_blank" class="dc-ref">UNIQLO</a><a href="https://www.musinsa.com" target="_blank" class="dc-ref">MUSINSA STD</a><a href="https://www.ralphlauren.com" target="_blank" class="dc-ref">Ralph Lauren</a><a href="https://www.studionicholson.com" target="_blank" class="dc-ref">Studio Nicholson</a><a href="https://www.apc.fr" target="_blank" class="dc-ref">A.P.C.</a><a href="https://auralee.jp" target="_blank" class="dc-ref">Auralee</a><a href="https://www.comoli.jp" target="_blank" class="dc-ref">Comoli</a><a href="https://www.cos.com" target="_blank" class="dc-ref">COS</a><a href="https://www.beams.co.jp" target="_blank" class="dc-ref">BEAMS+</a>
+        </div>
+      </div>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-label">타겟</div>
+      <div class="dc-value"><strong>2~30대</strong><br>남성 전반</div>
+    </div>
+  </div>
+
+  <!-- WV PROJECT -->
+  <div class="dash-card clickable">
+    <div class="dc-num">03</div>
+    <div class="dc-brand">WV PROJECT</div>
+    <div class="dc-slogan">"WhateVer you are."</div>
+    <div class="dc-theme">레트로 아메리칸 유니섹스</div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">브랜드 철학</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-desc"><br>"Whatever You Are" — 있는 그대로의 자신을 존중하며, 꾸미지 않은 자연스러운 스타일 속에서 개성을 드러낸다. 80-90년대 레트로 감성을 현대적으로 재해석한 유니섹스 브랜드. 빈티지 캐주얼과 소프트 스트릿 무드가 공존하는 트렌디한 유니섹스 브랜드.<br><br></div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">핵심 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw core">유니섹스</span><span class="dc-kw core">레트로아메리칸</span><span class="dc-kw core">스포티캐주얼</span><span class="dc-kw core">소프트스트릿</span><span class="dc-kw core">빈티지캐주얼</span><span class="dc-kw core">뉴트로감성</span><span class="dc-kw core">프레피</span><span class="dc-kw core">우라하라</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">확장 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw ext">유니크</span><span class="dc-kw ext">컬러플레이</span><span class="dc-kw ext">코지</span><span class="dc-kw ext">유스컬처</span><span class="dc-kw ext">노스텔지아</span><span class="dc-kw ext">유스레트로</span><span class="dc-kw ext">레이어드</span><span class="dc-kw ext">하이틴</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">참고 브랜드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-refs">
+          <a href="https://www.instagram.com/greenbutter_official" target="_blank" class="dc-ref">Green Butter</a><a href="https://www.instagram.com/teket_official" target="_blank" class="dc-ref">teket</a><a href="https://www.instagram.com/hellosunrise_official" target="_blank" class="dc-ref">헬로썬라이즈</a><a href="https://www.instagram.com/thomasmore_kr" target="_blank" class="dc-ref">토마스모어</a><a href="https://www.instagram.com/centaur_official" target="_blank" class="dc-ref">CENTAUR</a><a href="https://adererror.com" target="_blank" class="dc-ref">ADER ERROR</a>
+        </div>
+      </div>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-label">타겟</div>
+      <div class="dc-value"><strong>16~23세</strong><br>개성을 중시하는 남녀 학생·사회초년생</div>
+    </div>
+  </div>
+
+  <!-- PERSTEP -->
+  <div class="dash-card clickable">
+    <div class="dc-num">04</div>
+    <div class="dc-brand">PERSTEP</div>
+    <div class="dc-slogan">"Evolution begins with one step."</div>
+    <div class="dc-theme">일상 속 아메카지</div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">브랜드 철학</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-desc"><br>감도와 실용이 균형을 이루는 일상 속 아메카지 브랜드. 매일의 자신을 안정적으로 지탱해주는 감각적 도구로서 함께한다. "All Day Life." — 감성은 유지하면서, 실제로 매일 입기 좋은 옷.<br><br></div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">핵심 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw core">아메카지</span><span class="dc-kw core">로컬</span><span class="dc-kw core">생활중심</span><span class="dc-kw core">리얼웨어</span><span class="dc-kw core">빈티지</span><span class="dc-kw core">워크웨어</span><span class="dc-kw core">밀리터리</span><span class="dc-kw core">아웃도어</span><span class="dc-kw core">라이프</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">확장 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw ext">클래식캐주얼</span><span class="dc-kw ext">내구성</span><span class="dc-kw ext">기능성디테일</span><span class="dc-kw ext">모던아메카지</span><span class="dc-kw ext">필드데일리</span><span class="dc-kw ext">어센틱</span><span class="dc-kw ext">어반워크</span><span class="dc-kw ext">편안한실루엣</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">참고 브랜드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-refs">
+          <a href="https://descendant.jp" target="_blank" class="dc-ref">DESCENDANT</a><a href="https://www.danton.jp" target="_blank" class="dc-ref">DANTON</a><a href="https://www.beams.co.jp" target="_blank" class="dc-ref">BEAMS+</a><a href="https://www.llbean.com" target="_blank" class="dc-ref">L.L.Bean</a><a href="https://wtaps.com" target="_blank" class="dc-ref">WTAPS</a><a href="https://www.goldwin.co.jp/tnf" target="_blank" class="dc-ref">TNF Purple</a><a href="https://ordinaryfits.com" target="_blank" class="dc-ref">ORDINARY FITS</a><a href="https://www.visvim.tv" target="_blank" class="dc-ref">VISVIM</a>
+        </div>
+      </div>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-label">타겟</div>
+      <div class="dc-value"><strong>27~42세</strong><br>남성</div>
+    </div>
+  </div>
+
+  <!-- EZ -->
+  <div class="dash-card clickable">
+    <div class="dc-num">05</div>
+    <div class="dc-brand">EZ</div>
+    <div class="dc-slogan">"Uncovering flair in the relaxed."</div>
+    <div class="dc-theme">스트릿 그런지 캐주얼</div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">브랜드 철학</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-desc"><br>캐주얼의 편안함 위에 스트릿웨어의 감각적인 터치를 더하여 '멋'을 완성.<br><br></div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">핵심 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw core">스트릿</span><span class="dc-kw core">캐주얼</span><span class="dc-kw core">빈티지</span><span class="dc-kw core">트렌드핏</span><span class="dc-kw core">가성비</span><span class="dc-kw core">유니섹스</span><span class="dc-kw core">그런지</span><span class="dc-kw core">러프</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">확장 키워드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-keywords">
+          <span class="dc-kw ext">유스컬쳐</span><span class="dc-kw ext">이지스트릿</span><span class="dc-kw ext">그레인무드</span><span class="dc-kw ext">디지털빈티지</span><span class="dc-kw ext">포스트유스</span><span class="dc-kw ext">디스트레스드</span><span class="dc-kw ext">메시룩</span><span class="dc-kw ext">하이브리드스트릿</span>
+        </div>
+      </div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-toggle-btn" onclick="toggleCollapse(this, event)">
+        <div class="dc-label">참고 브랜드</div>
+        <span class="dc-toggle-arrow">&#9660;</span>
+      </div>
+      <div class="dc-collapsible">
+        <div class="dc-refs">
+          <a href="https://www.stussy.com" target="_blank" class="dc-ref">Stussy</a><a href="https://thisisneverthat.com" target="_blank" class="dc-ref">thisisneverthat</a><a href="https://nomanual.co.kr" target="_blank" class="dc-ref">nomanual</a><a href="https://www.erleliraiche.com" target="_blank" class="dc-ref">ERL</a><a href="https://www.ourlegacy.se" target="_blank" class="dc-ref">아워레가시</a><a href="https://jadedldn.com" target="_blank" class="dc-ref">jadedldn</a><a href="https://032c.com" target="_blank" class="dc-ref">032c</a><a href="https://thevinylhaus.com" target="_blank" class="dc-ref">더바이닐하우스</a>
+        </div>
+      </div>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-row">
+      <div class="dc-label">타겟</div>
+      <div class="dc-value"><strong>18~26세</strong><br>캐주얼함 안에서 멋을 찾는 남성</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="section-block season-concept">
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 2: COMPARISON MATRIX (가로 비교 테이블)     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="s-title">시즌 컨셉</div>
+
+<table class="matrix">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="brand-col" style="--accent:#E67E22;">FEPL</th>
+      <th class="brand-col" style="--accent:#4A6FA5;">JEMUT</th>
+      <th class="brand-col" style="--accent:#F39C12;">WV PROJECT</th>
+      <th class="brand-col" style="--accent:#D4A373;">PERSTEP</th>
+      <th class="brand-col" style="--accent:#E74C3C;">EZ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="row-label">시즌 테마</td>
+      <td><strong>Work in Cargo.<br>Live in Utility.</strong><br><span style="color:#6b7280;font-size:12px;">현장에서 완성되는 현대적 워크웨어</span></td>
+      <td><strong>Simple fits,<br>real days.</strong><br><span style="color:#6b7280;font-size:12px;">유니클로 실용성 + 랄프로렌 단정함</span></td>
+      <td><strong>Sunny Ordinary</strong><br><span style="color:#6b7280;font-size:12px;">80년대 아메리칸 레트로 이지 스트릿</span></td>
+      <td><strong>Fit the Life</strong><br><span style="color:#6b7280;font-size:12px;">삶에 꼭 맞게 스며드는 리얼 웨어</span></td>
+      <td><strong>FEED BREAKER</strong><br><span style="color:#6b7280;font-size:12px;">피드를 찢고 나온 남자</span></td>
+    </tr>
+    <tr>
+      <td class="row-label">시즌 키워드</td>
+      <td>
+        <div class="cell-kw">
+          <span class="kw-tag">작업복</span>
+          <span class="kw-tag">내구성</span>
+          <span class="kw-tag">모던유틸리티</span>
+        </div>
+      </td>
+      <td>
+        <div class="cell-kw">
+          <span class="kw-tag">데일리</span>
+          <span class="kw-tag">베이직</span>
+          <span class="kw-tag">남친룩</span>
+        </div>
+      </td>
+      <td>
+        <div class="cell-kw">
+          <span class="kw-tag">아메리칸캐주얼</span>
+          <span class="kw-tag">레트로</span>
+          <span class="kw-tag">빈티지</span>
+        </div>
+      </td>
+      <td>
+        <div class="cell-kw">
+          <span class="kw-tag">아메카지</span>
+          <span class="kw-tag">라이프</span>
+          <span class="kw-tag">리얼웨어</span>
+        </div>
+      </td>
+      <td>
+        <div class="cell-kw">
+          <span class="kw-tag">스트릿</span>
+          <span class="kw-tag">캐주얼</span>
+          <span class="kw-tag">그런지</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="row-label">추가 키워드</td>
+      <td>
+        <div class="ck-tags" id="ck-fepl-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="ck-input-fepl-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('fepl-s')}">
+          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('fepl-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="ck-tags" id="ck-jemut-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="ck-input-jemut-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('jemut-s')}">
+          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('jemut-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="ck-tags" id="ck-wv-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="ck-input-wv-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('wv-s')}">
+          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('wv-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="ck-tags" id="ck-ps-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="ck-input-ps-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('ps-s')}">
+          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('ps-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="ck-tags" id="ck-ez-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="ck-input-ez-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('ez-s')}">
+          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('ez-s')">추가</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="row-label">타겟</td>
+      <td>25-45세 직장인</td>
+      <td>2~30대 남성</td>
+      <td>16~23세 남녀</td>
+      <td>27~42세 남성</td>
+      <td>18~26세 남성</td>
+    </tr>
+    <tr>
+      <td class="row-label">참고 브랜드</td>
+      <td><a href="https://www.carhartt-wip.com" target="_blank" class="ref-link">Carhartt WIP</a><br><a href="https://www.dickies.com" target="_blank" class="ref-link">Dickies</a><br><a href="https://apresse.jp" target="_blank" class="ref-link">A.PRESSE</a><span id="comp-ref-fepl-s"></span></td>
+      <td><a href="https://www.uniqlo.com" target="_blank" class="ref-link">UNIQLO</a><br><a href="https://www.ralphlauren.com" target="_blank" class="ref-link">Ralph Lauren</a><br><a href="https://www.cos.com" target="_blank" class="ref-link">COS</a><span id="comp-ref-jemut-s"></span></td>
+      <td><a href="https://www.instagram.com/greenbutter_official" target="_blank" class="ref-link">Green Butter</a><br><a href="https://www.instagram.com/teket_official" target="_blank" class="ref-link">teket</a><br><a href="https://adererror.com" target="_blank" class="ref-link">ADER ERROR</a><span id="comp-ref-wv-s"></span></td>
+      <td><a href="https://descendant.jp" target="_blank" class="ref-link">DESCENDANT</a><br><a href="https://www.danton.jp" target="_blank" class="ref-link">DANTON</a><br><a href="https://www.beams.co.jp" target="_blank" class="ref-link">BEAMS+</a><span id="comp-ref-ps-s"></span></td>
+      <td><a href="https://www.stussy.com" target="_blank" class="ref-link">Stussy</a><br><a href="https://thisisneverthat.com" target="_blank" class="ref-link">thisisneverthat</a><br><a href="https://032c.com" target="_blank" class="ref-link">032c</a><span id="comp-ref-ez-s"></span></td>
+    </tr>
+    <tr>
+      <td class="row-label">추가 브랜드</td>
+      <td>
+        <div class="cr-tags" id="cr-fepl-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="cr-input-fepl-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('fepl-s')}">
+          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('fepl-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="cr-tags" id="cr-jemut-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="cr-input-jemut-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('jemut-s')}">
+          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('jemut-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="cr-tags" id="cr-wv-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="cr-input-wv-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('wv-s')}">
+          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('wv-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="cr-tags" id="cr-ps-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="cr-input-ps-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('ps-s')}">
+          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('ps-s')">추가</button>
+        </div>
+      </td>
+      <td>
+        <div class="cr-tags" id="cr-ez-s"></div>
+        <div class="ck-input-wrap">
+          <input class="ck-input" id="cr-input-ez-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('ez-s')}">
+          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('ez-s')">추가</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+
+</div><!-- /main -->
+
+<footer class="footer">FMJ INTERNATIONAL &mdash; BRAND DIRECTION DASHBOARD &mdash; 26 S/S &mdash; INTERNAL USE ONLY</footer>
+
+<script>
+function togglePanel(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ── Collapsible Toggle (브랜드 철학 / 핵심 키워드) ── */
+function toggleCollapse(btn, event) {
+  event.stopPropagation();
+  const content = btn.nextElementSibling;
+  if (!content) return;
+  const isOpen = content.classList.contains('open');
+  if (isOpen) {
+    content.style.maxHeight = '0px';
+    content.classList.remove('open');
+    btn.classList.remove('open');
+  } else {
+    content.classList.add('open');
+    content.style.maxHeight = content.scrollHeight + 'px';
+    btn.classList.add('open');
+  }
+}
+
+/* ── Custom Keyword (시즌 키워드 추가) ── */
+const CK_KEY = 'bd_custom_keywords';
+
+function getCkData() {
+  try { return JSON.parse(localStorage.getItem(CK_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveCkData(data) {
+  localStorage.setItem(CK_KEY, JSON.stringify(data));
+}
+
+function renderKw(brand) {
+  const container = document.getElementById('ck-' + brand);
+  if (!container) return;
+  const data = getCkData();
+  const keywords = data[brand] || [];
+  container.innerHTML = keywords.map(kw =>
+    `<span class="ck-tag">${kw}<span class="ck-tag-x" onclick="event.stopPropagation();removeKw('${brand}','${kw.replace(/'/g,"\\'")}')">&times;</span></span>`
+  ).join('');
+}
+
+function addKw(brand) {
+  const input = document.getElementById('ck-input-' + brand);
+  if (!input) return;
+  const kw = input.value.trim();
+  if (!kw) return;
+  const data = getCkData();
+  if (!data[brand]) data[brand] = [];
+  if (data[brand].includes(kw)) { input.value = ''; return; }
+  data[brand].push(kw);
+  saveCkData(data);
+  renderKw(brand);
+  updateClearBtn(brand);
+  input.value = '';
+  input.focus();
+}
+
+function removeKw(brand, kw) {
+  const data = getCkData();
+  if (!data[brand]) return;
+  data[brand] = data[brand].filter(k => k !== kw);
+  if (data[brand].length === 0) delete data[brand];
+  saveCkData(data);
+  renderKw(brand);
+  updateClearBtn(brand);
+}
+
+function clearKw(brand) {
+  const data = getCkData();
+  delete data[brand];
+  saveCkData(data);
+  renderKw(brand);
+  updateClearBtn(brand);
+}
+
+function updateClearBtn(brand) {
+  const btn = document.getElementById('ck-clear-' + brand);
+  if (!btn) return;
+  const data = getCkData();
+  btn.style.display = (data[brand] && data[brand].length > 0) ? 'inline' : 'none';
+}
+
+/* ── Custom Ref Brands (참고 브랜드 추가) ── */
+const CR_KEY = 'bd_custom_refs';
+
+function getCrData() {
+  try { return JSON.parse(localStorage.getItem(CR_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveCrData(data) {
+  localStorage.setItem(CR_KEY, JSON.stringify(data));
+}
+
+function renderRef(brand) {
+  const container = document.getElementById('cr-' + brand);
+  if (!container) return;
+  const data = getCrData();
+  const refs = data[brand] || [];
+  container.innerHTML = refs.map(r =>
+    `<span class="cr-tag">${r}<span class="cr-tag-x" onclick="event.stopPropagation();removeRef('${brand}','${r.replace(/'/g,"\\'")}')">&times;</span></span>`
+  ).join('');
+  syncRefToComp(brand);
+}
+
+function addRef(brand) {
+  const input = document.getElementById('cr-input-' + brand);
+  if (!input) return;
+  const r = input.value.trim();
+  if (!r) return;
+  const data = getCrData();
+  if (!data[brand]) data[brand] = [];
+  if (data[brand].includes(r)) { input.value = ''; return; }
+  data[brand].push(r);
+  saveCrData(data);
+  renderRef(brand);
+  updateRefClearBtn(brand);
+  input.value = '';
+  input.focus();
+}
+
+function removeRef(brand, r) {
+  const data = getCrData();
+  if (!data[brand]) return;
+  data[brand] = data[brand].filter(v => v !== r);
+  if (data[brand].length === 0) delete data[brand];
+  saveCrData(data);
+  renderRef(brand);
+  updateRefClearBtn(brand);
+}
+
+function clearRef(brand) {
+  const data = getCrData();
+  delete data[brand];
+  saveCrData(data);
+  renderRef(brand);
+  updateRefClearBtn(brand);
+}
+
+function updateRefClearBtn(brand) {
+  const btn = document.getElementById('cr-clear-' + brand);
+  if (!btn) return;
+  const data = getCrData();
+  btn.style.display = (data[brand] && data[brand].length > 0) ? 'inline' : 'none';
+}
+
+function syncRefToComp(brand) {
+  const comp = document.getElementById('comp-ref-' + brand);
+  if (!comp) return;
+  const data = getCrData();
+  const refs = data[brand] || [];
+  if (refs.length === 0) { comp.innerHTML = ''; return; }
+  comp.innerHTML = refs.map(r => `<br><span class="ref-link" style="color:#059669;border-bottom:1px dashed #a7f3d0;">${r}</span>`).join('');
+}
+
+/* ── Memo / Notes ── */
+const MEMO_KEY = 'bd_memos';
+let memoTimer = {};
+
+function getMemos() {
+  try { return JSON.parse(localStorage.getItem(MEMO_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveMemo(brand) {
+  clearTimeout(memoTimer[brand]);
+  memoTimer[brand] = setTimeout(() => {
+    const el = document.getElementById('memo-' + brand);
+    if (!el) return;
+    const memos = getMemos();
+    if (el.value.trim()) memos[brand] = el.value;
+    else delete memos[brand];
+    localStorage.setItem(MEMO_KEY, JSON.stringify(memos));
+    const saved = document.getElementById('memo-saved-' + brand);
+    if (saved) {
+      saved.textContent = '저장됨 ' + new Date().toLocaleTimeString('ko');
+      setTimeout(() => { saved.textContent = ''; }, 3000);
+    }
+  }, 500);
+}
+
+function loadMemos() {
+  const memos = getMemos();
+  ['fepl','jemut','wv','ps','ez'].forEach(b => {
+    const el = document.getElementById('memo-' + b);
+    if (el && memos[b]) el.value = memos[b];
+  });
+}
+
+/* ── Keyword Overlap Detection ── */
+function detectOverlap() {
+  const brandKws = {
+    'FEPL': [], 'JEMUT': [], 'WV PROJECT': [], 'PERSTEP': [], 'EZ': []
+  };
+  const brandIds = { 'FEPL': 'fepl', 'JEMUT': 'jemut', 'WV PROJECT': 'wv', 'PERSTEP': 'ps', 'EZ': 'ez' };
+
+  // Collect core keywords from detail panels
+  document.querySelectorAll('.detail-panel').forEach(panel => {
+    const brandEl = panel.querySelector('.dt-brand');
+    if (!brandEl) return;
+    const name = brandEl.textContent.trim();
+    if (!brandKws[name]) return;
+    panel.querySelectorAll('.db-kw.core').forEach(kw => {
+      brandKws[name].push(kw.textContent.trim());
+    });
+  });
+
+  // Also add season keywords from cards
+  const seasonMap = { 'fepl-s': 'FEPL', 'jemut-s': 'JEMUT', 'wv-s': 'WV PROJECT', 'ps-s': 'PERSTEP', 'ez-s': 'EZ' };
+  const ckData = getCkData();
+  Object.entries(seasonMap).forEach(([id, name]) => {
+    if (ckData[id]) {
+      ckData[id].forEach(kw => { if (!brandKws[name].includes(kw)) brandKws[name].push(kw); });
+    }
+  });
+
+  // Find overlaps
+  const allKws = {};
+  Object.entries(brandKws).forEach(([brand, kws]) => {
+    kws.forEach(kw => {
+      if (!allKws[kw]) allKws[kw] = [];
+      if (!allKws[kw].includes(brand)) allKws[kw].push(brand);
+    });
+  });
+
+  const overlaps = Object.entries(allKws)
+    .filter(([, brands]) => brands.length >= 2)
+    .sort((a, b) => b[1].length - a[1].length);
+
+  const container = document.getElementById('overlap-result');
+  if (!container) return;
+
+  if (overlaps.length === 0) {
+    container.innerHTML = '<div class="no-overlap">겹치는 키워드가 없습니다.</div>';
+    return;
+  }
+
+  container.innerHTML = overlaps.map(([kw, brands]) =>
+    `<div class="overlap-chip"><strong>${kw}</strong> <span class="overlap-brands">${brands.join(' · ')}</span></div>`
+  ).join('');
+}
+
+/* ── Data Export / Import ── */
+function exportData() {
+  const data = {
+    version: 1,
+    date: new Date().toISOString(),
+    keywords: getCkData(),
+    refs: getCrData(),
+    memos: getMemos()
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'brand-direction-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (data.keywords) { localStorage.setItem(CK_KEY, JSON.stringify(data.keywords)); }
+      if (data.refs) { localStorage.setItem(CR_KEY, JSON.stringify(data.refs)); }
+      if (data.memos) { localStorage.setItem(MEMO_KEY, JSON.stringify(data.memos)); }
+      location.reload();
+    } catch (err) {
+      alert('파일 형식 오류');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Keywords & refs
+  const brands = ['fepl','jemut','wv','ps','ez','fepl-s','jemut-s','wv-s','ps-s','ez-s'];
+  brands.forEach(b => { renderKw(b); updateClearBtn(b); });
+  const refBrands = ['fepl-s','jemut-s','wv-s','ps-s','ez-s'];
+  refBrands.forEach(b => { renderRef(b); updateRefClearBtn(b); });
+
+  // Memos
+  loadMemos();
+
+  // Keyword overlap
+  detectOverlap();
+});
+</script>
+
+</body>
+</html>
