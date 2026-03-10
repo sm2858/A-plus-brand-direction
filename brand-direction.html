@@ -59,6 +59,167 @@ body {
   min-height: 400px; color: #9ca3af; font-size: 18px;
 }
 
+/* ── DESIGN SCHEDULE ── */
+.sch-page { display: flex; gap: 0; min-height: calc(100vh - 90px); background: #f0d5c8; }
+.sch-left {
+  width: 360px; min-width: 360px; padding: 28px 24px;
+  border-right: 1px solid #d4b8ab;
+  overflow-y: auto; max-height: calc(100vh - 90px);
+}
+.sch-right {
+  flex: 1; padding: 28px 32px; overflow-y: auto;
+  max-height: calc(100vh - 90px);
+}
+/* Left: Designer List */
+.sch-section-title {
+  font-size: 18px; font-weight: 700; color: #1e3a6b;
+  margin-bottom: 4px;
+}
+.sch-section-sub {
+  font-size: 13px; color: #1e3a6b; opacity: 0.5;
+  margin-bottom: 16px;
+}
+.sch-designer-list {}
+.sch-designer-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; cursor: pointer;
+  border-radius: 8px; margin-bottom: 4px;
+  transition: all 0.15s; border: 1px solid transparent;
+}
+.sch-designer-row:hover { background: rgba(255,255,255,0.5); }
+.sch-designer-row.active {
+  background: #ffffff; border-color: #1e3a6b;
+  box-shadow: 0 2px 8px rgba(30,58,107,0.1);
+}
+.sch-designer-rank {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #1e3a6b; color: #fff;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sch-designer-row.active .sch-designer-rank { background: #059669; }
+.sch-designer-info { flex: 1; min-width: 0; }
+.sch-designer-name {
+  font-size: 15px; font-weight: 700; color: #1e3a6b;
+}
+.sch-designer-count {
+  font-size: 12px; color: #6b7280; margin-top: 1px;
+}
+.sch-designer-badge {
+  font-size: 13px; font-weight: 700; padding: 3px 10px;
+  border-radius: 4px;
+}
+.sch-designer-badge.high { color: #059669; background: #ecfdf5; }
+.sch-designer-badge.mid { color: #d97706; background: #fffbeb; }
+.sch-designer-badge.low { color: #ef4444; background: #fef2f2; }
+
+/* Left: Item List (below designer list when selected) */
+.sch-item-list {
+  background: #ffffff; border-radius: 10px; margin-top: 12px;
+  border: 1px solid rgba(30,58,107,0.1);
+  overflow: hidden;
+}
+.sch-item-list-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid #f0f0f0;
+}
+.sch-item-list-title {
+  font-size: 15px; font-weight: 700; color: #1e3a6b;
+}
+.sch-item-list-stats {
+  font-size: 12px; color: #6b7280;
+}
+.sch-item-list-stats span { margin-left: 8px; }
+.sch-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px;
+  font-size: 13px; color: #374151;
+  border-bottom: 1px solid #f5f5f5;
+  gap: 8px;
+}
+.sch-item:last-child { border-bottom: none; }
+.sch-item-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sch-item-date {
+  font-size: 12px; color: #9ca3af; font-family: 'Inter';
+  flex-shrink: 0;
+}
+.sch-item-status {
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  padding: 2px 10px; border-radius: 4px;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.sch-item-status.applied {
+  color: #059669; background: #ecfdf5;
+}
+.sch-item-status.cancelled {
+  color: #ef4444; background: #fef2f2;
+}
+.sch-add-item {
+  display: flex; align-items: center; justify-content: center;
+  padding: 10px 18px; font-size: 13px; color: #9ca3af;
+  cursor: pointer; border-top: 1px solid #f0f0f0;
+  transition: all 0.15s;
+}
+.sch-add-item:hover { background: #faf5f2; color: #1e3a6b; }
+
+/* Right: Calendar */
+.sch-cal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.sch-cal-title {
+  font-size: 20px; font-weight: 700; color: #1e3a6b;
+  font-family: 'Inter','Noto Sans KR',sans-serif;
+}
+.sch-cal-nav {
+  background: none; border: none; font-size: 20px; color: #1e3a6b;
+  cursor: pointer; padding: 6px 10px; border-radius: 6px;
+  transition: background 0.15s;
+}
+.sch-cal-nav:hover { background: rgba(30,58,107,0.1); }
+.sch-cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; text-align: center;
+}
+.sch-cal-dow {
+  font-size: 13px; font-weight: 600; color: #1e3a6b;
+  padding: 8px 0; opacity: 0.6;
+}
+.sch-cal-cell {
+  min-height: 90px; background: #ffffff; border-radius: 8px;
+  padding: 6px; cursor: pointer; transition: all 0.15s;
+  border: 1px solid rgba(30,58,107,0.06);
+  display: flex; flex-direction: column;
+}
+.sch-cal-cell:hover { border-color: #1e3a6b; box-shadow: 0 2px 8px rgba(30,58,107,0.08); }
+.sch-cal-cell.other-month { opacity: 0.3; background: transparent; border-color: transparent; }
+.sch-cal-cell.today { border-color: #1e3a6b; border-width: 2px; }
+.sch-cal-cell-day {
+  font-size: 13px; font-weight: 600; color: #1e3a6b;
+  margin-bottom: 4px;
+}
+.sch-cal-cell.today .sch-cal-cell-day {
+  background: #1e3a6b; color: #fff; width: 22px; height: 22px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+}
+.sch-cal-items {
+  flex: 1; display: flex; flex-direction: column; gap: 2px;
+  overflow: hidden;
+}
+.sch-cal-item {
+  font-size: 11px; padding: 2px 5px; border-radius: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  line-height: 1.4;
+}
+.sch-cal-item.applied { background: #ecfdf5; color: #059669; }
+.sch-cal-item.cancelled { background: #fef2f2; color: #ef4444; }
+.sch-cal-more {
+  font-size: 10px; color: #9ca3af; text-align: center;
+  padding: 1px 0;
+}
+
 /* ── MAIN ── */
 .main { padding: 0; max-width: none; margin: 0; }
 .section-block {
@@ -764,6 +925,8 @@ body {
   <div class="header-right">
     <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
     <span class="header-tab-divider">|</span>
+    <span class="header-tab" data-tab="dashboard" onclick="switchHeaderTab('dashboard')">브랜드소개</span>
+    <span class="header-tab-divider">|</span>
     <span class="header-tab" data-tab="sample" onclick="switchHeaderTab('sample')">샘플구매원장</span>
     <span class="header-tab-divider">|</span>
     <span class="header-tab" data-tab="schedule" onclick="switchHeaderTab('schedule')">디자인스케줄</span>
@@ -1144,8 +1307,23 @@ body {
 
 <!-- TAB: 디자인스케줄 -->
 <div id="tab-schedule" class="tab-content">
-  <div class="section-block">
-    <div class="tab-placeholder">디자인스케줄 콘텐츠 준비 중</div>
+  <div class="sch-page">
+    <!-- 왼쪽: 담당자 분석 -->
+    <div class="sch-left">
+      <div class="sch-section-title">담당자 분석</div>
+      <div class="sch-section-sub">등록 수량 기준 정렬</div>
+      <div class="sch-designer-list" id="sch-designers"></div>
+      <div id="sch-item-list-wrap"></div>
+    </div>
+    <!-- 오른쪽: 달력 -->
+    <div class="sch-right">
+      <div class="sch-cal-header">
+        <button class="sch-cal-nav" onclick="schNavMonth(-1)">&laquo;</button>
+        <div class="sch-cal-title" id="sch-cal-title"></div>
+        <button class="sch-cal-nav" onclick="schNavMonth(1)">&raquo;</button>
+      </div>
+      <div class="sch-cal-grid" id="sch-cal-grid"></div>
+    </div>
   </div>
 </div>
 
@@ -1165,13 +1343,12 @@ function switchHeaderTab(tabName) {
 
   if (tabName === 'dashboard') {
     document.getElementById('tab-dashboard').classList.add('active');
-    // No tab highlighted - dashboard is default (no tab selected)
   } else {
     const target = document.getElementById('tab-' + tabName);
     if (target) target.classList.add('active');
-    const tab = document.querySelector('.header-tab[data-tab="' + tabName + '"]');
-    if (tab) tab.classList.add('active');
   }
+  const tab = document.querySelector('.header-tab[data-tab="' + tabName + '"]');
+  if (tab) tab.classList.add('active');
 }
 
 function togglePanel(id) {
@@ -1918,10 +2095,269 @@ function importData(e) {
 }
 
 /* ── Init ── */
+/* ══════════════════════════════════════ */
+/* DESIGN SCHEDULE                        */
+/* ══════════════════════════════════════ */
+const SCH_KEY = 'bd_schedule';
+const SCH_DESIGNERS = ['김민재','김지인','김형준','성지현','이정주','임순혁','장중욱','전현수','홍성미'];
+let schCalDate = new Date();
+let schSelectedDesigner = null;
+
+function getSchData() {
+  try {
+    const d = JSON.parse(localStorage.getItem(SCH_KEY));
+    if (d && d.designers) return d;
+  } catch {}
+  const designers = {};
+  SCH_DESIGNERS.forEach(n => { designers[n] = { items: [] }; });
+  return { designers: designers };
+}
+
+function saveSchData(data) {
+  localStorage.setItem(SCH_KEY, JSON.stringify(data));
+}
+
+function getSchRate(designer) {
+  if (!designer || !designer.items || designer.items.length === 0) return 0;
+  const applied = designer.items.filter(i => i.status === '적용').length;
+  return (applied / designer.items.length) * 100;
+}
+
+// ── Designer List (Left Panel) ──
+function renderSchDesigners() {
+  const container = document.getElementById('sch-designers');
+  if (!container) return;
+  const data = getSchData();
+
+  // Sort by item count descending (등록 수량 많은 순)
+  const sorted = SCH_DESIGNERS.slice().sort((a, b) => {
+    const countA = (data.designers[a] || { items: [] }).items.length;
+    const countB = (data.designers[b] || { items: [] }).items.length;
+    if (countB !== countA) return countB - countA;
+    return getSchRate(data.designers[b]) - getSchRate(data.designers[a]);
+  });
+
+  let html = '';
+  sorted.forEach((name, rank) => {
+    const d = data.designers[name] || { items: [] };
+    const total = d.items.length;
+    const applied = d.items.filter(i => i.status === '적용').length;
+    const rate = total > 0 ? Math.round((applied / total) * 1000) / 10 : 0;
+    const rateClass = rate >= 80 ? 'high' : rate >= 50 ? 'mid' : 'low';
+    const isActive = schSelectedDesigner === name ? ' active' : '';
+
+    html += '<div class="sch-designer-row' + isActive + '" onclick="schSelectDesigner(\'' + name + '\')">';
+    html += '<div class="sch-designer-rank">' + (rank + 1) + '</div>';
+    html += '<div class="sch-designer-info">';
+    html += '<div class="sch-designer-name">' + name + '</div>';
+    html += '<div class="sch-designer-count">승인 ' + total + '건 · 적용 ' + applied + '건</div>';
+    html += '</div>';
+    html += '<span class="sch-designer-badge ' + rateClass + '">' + (total > 0 ? rate + '%' : '-') + '</span>';
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+
+  // Render item list for selected designer
+  renderSchItemList();
+}
+
+function renderSchItemList() {
+  const wrap = document.getElementById('sch-item-list-wrap');
+  if (!wrap) return;
+
+  if (!schSelectedDesigner) {
+    wrap.innerHTML = '';
+    return;
+  }
+
+  const data = getSchData();
+  const d = data.designers[schSelectedDesigner] || { items: [] };
+  const total = d.items.length;
+  const applied = d.items.filter(i => i.status === '적용').length;
+  const cancelled = d.items.filter(i => i.status === '캔슬').length;
+
+  let html = '<div class="sch-item-list">';
+  html += '<div class="sch-item-list-header">';
+  html += '<span class="sch-item-list-title">' + schSelectedDesigner + ' 아이템</span>';
+  html += '<div class="sch-item-list-stats">';
+  html += '<span>승인 ' + total + '</span>';
+  html += '<span>적용 ' + applied + '</span>';
+  html += '<span>캔슬 ' + cancelled + '</span>';
+  html += '</div></div>';
+
+  // Sort items by date (newest first)
+  const items = d.items.map((item, idx) => ({ ...item, _idx: idx }));
+  items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  items.forEach(item => {
+    const stClass = item.status === '적용' ? 'applied' : 'cancelled';
+    const stText = item.status === '캔슬' && item.cancelReason
+      ? '캔슬(' + item.cancelReason + ')'
+      : item.status;
+    const dateStr = item.date ? item.date.slice(5).replace('-', '/') : '';
+    html += '<div class="sch-item">';
+    html += '<span class="sch-item-name">' + item.name + '</span>';
+    html += '<span class="sch-item-date">' + dateStr + '</span>';
+    html += '<span class="sch-item-status ' + stClass + '" onclick="event.stopPropagation();schToggleStatus(\'' + schSelectedDesigner + '\',' + item._idx + ')">' + stText + '</span>';
+    html += '</div>';
+  });
+
+  html += '<div class="sch-add-item" onclick="schAddItem(\'' + schSelectedDesigner + '\')">+ 아이템 추가</div>';
+  html += '</div>';
+
+  wrap.innerHTML = html;
+}
+
+function schSelectDesigner(name) {
+  schSelectedDesigner = schSelectedDesigner === name ? null : name;
+  renderSchDesigners();
+  renderSchCalendar();
+}
+
+// ── Calendar (Right Panel) ──
+function renderSchCalendar() {
+  const year = schCalDate.getFullYear();
+  const month = schCalDate.getMonth();
+  const titleEl = document.getElementById('sch-cal-title');
+  const gridEl = document.getElementById('sch-cal-grid');
+  if (!titleEl || !gridEl) return;
+
+  titleEl.textContent = year + '년 ' + (month + 1) + '월';
+
+  const data = getSchData();
+  const today = new Date();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  let startDow = firstDay.getDay();
+  startDow = startDow === 0 ? 6 : startDow - 1;
+
+  // Build date-to-items map for the selected designer (or all)
+  const dateMap = {};
+  const designerNames = schSelectedDesigner ? [schSelectedDesigner] : SCH_DESIGNERS;
+  designerNames.forEach(name => {
+    const d = data.designers[name] || { items: [] };
+    d.items.forEach(item => {
+      if (!item.date) return;
+      if (!dateMap[item.date]) dateMap[item.date] = [];
+      dateMap[item.date].push({ ...item, designer: name });
+    });
+  });
+
+  let html = '';
+  const dows = ['월','화','수','목','금','토','일'];
+  dows.forEach(d => { html += '<div class="sch-cal-dow">' + d + '</div>'; });
+
+  // Helper to render a calendar cell
+  function renderCell(dayNum, isOtherMonth) {
+    const dateKey = isOtherMonth ? null : (year + '-' + String(month + 1).padStart(2, '0') + '-' + String(dayNum).padStart(2, '0'));
+    const isToday = !isOtherMonth && (dayNum === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+    const items = dateKey ? (dateMap[dateKey] || []) : [];
+    const cls = 'sch-cal-cell' + (isOtherMonth ? ' other-month' : '') + (isToday ? ' today' : '');
+
+    html += '<div class="' + cls + '"' + (dateKey ? ' onclick="schCalCellClick(\'' + dateKey + '\')"' : '') + '>';
+    html += '<div class="sch-cal-cell-day">' + dayNum + '</div>';
+    html += '<div class="sch-cal-items">';
+    const maxShow = 3;
+    items.slice(0, maxShow).forEach(item => {
+      const stCls = item.status === '적용' ? 'applied' : 'cancelled';
+      const label = schSelectedDesigner ? item.name : (item.designer + ' · ' + item.name);
+      html += '<div class="sch-cal-item ' + stCls + '" title="' + label + '">' + label + '</div>';
+    });
+    if (items.length > maxShow) {
+      html += '<div class="sch-cal-more">+' + (items.length - maxShow) + '건 더</div>';
+    }
+    html += '</div></div>';
+  }
+
+  // Previous month fill
+  const prevLast = new Date(year, month, 0).getDate();
+  for (let i = startDow - 1; i >= 0; i--) {
+    renderCell(prevLast - i, true);
+  }
+
+  // Current month
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    renderCell(d, false);
+  }
+
+  // Next month fill
+  const totalCells = startDow + lastDay.getDate();
+  const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remaining; i++) {
+    renderCell(i, true);
+  }
+
+  gridEl.innerHTML = html;
+}
+
+function schNavMonth(dir) {
+  schCalDate.setMonth(schCalDate.getMonth() + dir);
+  renderSchCalendar();
+}
+
+function schCalCellClick(dateKey) {
+  if (!schSelectedDesigner) {
+    alert('왼쪽에서 담당자를 먼저 선택하세요.');
+    return;
+  }
+  const itemName = prompt(schSelectedDesigner + ' — ' + dateKey + '\n아이템 이름을 입력하세요:');
+  if (!itemName || !itemName.trim()) return;
+  const data = getSchData();
+  data.designers[schSelectedDesigner].items.push({
+    name: itemName.trim(), status: '적용', cancelReason: '', date: dateKey
+  });
+  saveSchData(data);
+  renderSchDesigners();
+  renderSchCalendar();
+}
+
+function schToggleStatus(name, idx) {
+  const data = getSchData();
+  const item = data.designers[name].items[idx];
+  if (item.status === '적용') {
+    const reason = prompt('캔슬 사유를 입력하세요:');
+    if (reason === null) return;
+    item.status = '캔슬';
+    item.cancelReason = reason;
+  } else {
+    item.status = '적용';
+    item.cancelReason = '';
+  }
+  saveSchData(data);
+  renderSchDesigners();
+  renderSchCalendar();
+}
+
+function schAddItem(name) {
+  const today = new Date();
+  const defaultDate = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+  const itemName = prompt('아이템 이름을 입력하세요:\n(예: FEPL / 오버핏 자켓 블랙)');
+  if (!itemName || !itemName.trim()) return;
+  const dateInput = prompt('날짜를 입력하세요 (YYYY-MM-DD):', defaultDate);
+  if (!dateInput) return;
+  const data = getSchData();
+  data.designers[name].items.push({
+    name: itemName.trim(), status: '적용', cancelReason: '', date: dateInput.trim()
+  });
+  saveSchData(data);
+  schSelectedDesigner = name;
+  renderSchDesigners();
+  renderSchCalendar();
+}
+
+function initSchedule() {
+  renderSchCalendar();
+  renderSchDesigners();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Season management
   renderSeasonTabs();
   renderSeasonTable();
+
+  // Design Schedule
+  initSchedule();
 
   // Keywords & refs (brand-intro section)
   const brands = ['fepl','jemut','wv','ps','ez'];
