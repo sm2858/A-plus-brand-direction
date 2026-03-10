@@ -19,7 +19,7 @@ body {
 /* ── HEADER ── */
 .header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 40px;
+  padding: 32px 40px;
   border-bottom: 1px solid #333333;
   background: #000000;
   position: sticky; top: 0; z-index: 50;
@@ -27,7 +27,7 @@ body {
 }
 .header-left { display: flex; align-items: center; gap: 16px; }
 .header-logo {
-  font-family: 'Inter'; font-weight: 800; font-size: 18px;
+  font-family: 'Inter'; font-weight: 800; font-size: 23px;
   color: #ffffff; letter-spacing: 1px; text-transform: uppercase;
 }
 .header-divider { width:1px; height:20px; background:#555555; }
@@ -38,6 +38,25 @@ body {
   background: #ecfdf5; color: #059669;
   font-size: 14px; font-weight: 700; letter-spacing: 1px;
   border: 1px solid #a7f3d0;
+}
+.header-tab {
+  color: #9ca3af; font-size: 15px; font-weight: 600;
+  cursor: pointer; padding: 4px 12px; transition: color 0.15s;
+  letter-spacing: 0.5px;
+}
+.header-tab:hover { color: #ffffff; }
+.header-tab.active { color: #ffffff; }
+.header-tab-divider {
+  color: #555555; font-size: 16px; font-weight: 300;
+  user-select: none;
+}
+
+/* ── TAB CONTENT ── */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 400px; color: #9ca3af; font-size: 18px;
 }
 
 /* ── MAIN ── */
@@ -266,13 +285,14 @@ body {
 .ref-link {
   color: #374151; text-decoration: none; font-size: 14px;
   border-bottom: 1px dashed #d1d5db;
-  transition: all 0.15s;
+  transition: all 0.15s; cursor: pointer;
 }
 .ref-link:hover { color: #059669; border-bottom-color: #059669; }
 .matrix .cell-kw {
   display: flex; flex-wrap: wrap; gap: 4px;
 }
 .matrix .kw-tag {
+  display: inline-flex; align-items: center; gap: 4px;
   padding: 2px 8px; border-radius: 4px; font-size: 13px;
   background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0;
 }
@@ -407,13 +427,13 @@ body {
 .ck-input:focus { border-color: #fbbf24; box-shadow: 0 0 0 2px rgba(251,191,36,0.15); }
 .ck-input::placeholder { color: #d1d5db; }
 .ck-add-btn {
-  padding: 4px 10px; border-radius: 8px;
-  border: 1px solid #bbf7d0; background: #f0fdf4;
-  color: #15803d; font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 4px;
+  border: 1px dashed #d1d5db; background: transparent;
+  color: #9ca3af; font-size: 14px; font-weight: 600;
   cursor: pointer; white-space: nowrap;
-  transition: all 0.15s;
+  transition: all 0.15s; font-family: inherit;
 }
-.ck-add-btn:hover { background: #dcfce7; border-color: #86efac; }
+.ck-add-btn:hover { background: transparent; border-color: #059669; color: #059669; }
 .ck-header { display: flex; align-items: center; justify-content: space-between; }
 .ck-clear {
   font-size: 12px; color: #d1d5db; cursor: pointer;
@@ -438,10 +458,10 @@ body {
 }
 .cr-tag-x:hover { color: #dc2626; }
 .cr-add-btn {
-  border-color: #bbf7d0 !important; background: #f0fdf4 !important;
-  color: #15803d !important;
+  border-color: #d1d5db !important; background: transparent !important;
+  color: #9ca3af !important;
 }
-.cr-add-btn:hover { background: #dcfce7 !important; border-color: #86efac !important; }
+.cr-add-btn:hover { background: transparent !important; border-color: #059669 !important; color: #059669 !important; }
 
 /* ══════════════════════════════════════ */
 /* TARGET AGE CHART                      */
@@ -559,6 +579,179 @@ body {
   color: #666666; font-size: 13px; letter-spacing: 2px;
   background: #000000;
 }
+/* ══════════════════════════════════════ */
+/* SEASON MANAGEMENT                      */
+/* ══════════════════════════════════════ */
+.season-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.season-header .s-title { margin-bottom: 0; }
+.season-tabs { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.season-btn-group { margin-left: auto; display: flex; gap: 8px; flex-shrink: 0; }
+.season-tab {
+  padding: 6px 16px; border-radius: 4px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  border: 1px solid #e5e7eb; background: #f9fafb; color: #6b7280;
+  transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit;
+}
+.season-tab:hover { border-color: #059669; color: #059669; }
+.season-tab.active { background: #059669; border-color: #059669; color: #fff; }
+.season-tab-x { font-size: 12px; cursor: pointer; opacity: 0.6; margin-left: 2px; }
+.season-tab-x:hover { opacity: 1; }
+.season-add-btn, .season-edit-btn {
+  padding: 6px 18px; border-radius: 4px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  border: 1px dashed #d1d5db; background: transparent; color: #9ca3af;
+  transition: all 0.15s; font-family: inherit; min-width: 80px; text-align: center;
+}
+
+.season-modal-overlay {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); z-index: 100;
+  justify-content: center; align-items: center;
+}
+.season-modal-overlay.show { display: flex; }
+.season-modal {
+  background: #fff; border-radius: 16px; padding: 32px;
+  width: 420px; max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+.season-modal h3 { font-size: 20px; font-weight: 800; margin-bottom: 20px; color: #1e293b; }
+.season-modal-row { margin-bottom: 16px; }
+.season-modal-label { font-size: 13px; font-weight: 600; color: #6b7280; margin-bottom: 6px; }
+.season-modal-input {
+  width: 100%; padding: 8px 12px;
+  border: 1px solid #e5e7eb; border-radius: 8px;
+  font-size: 15px; font-family: inherit; outline: none;
+}
+.season-modal-input:focus { border-color: #059669; box-shadow: 0 0 0 2px rgba(5,150,105,0.1); }
+.season-modal-radio-group { display: flex; gap: 12px; }
+.season-modal-radio {
+  display: flex; align-items: center; gap: 6px;
+  cursor: pointer; font-size: 15px; color: #374151;
+}
+.season-modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 24px; }
+.season-modal-btn {
+  padding: 8px 20px; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.15s;
+}
+.season-modal-btn.cancel { border: 1px solid #e5e7eb; background: #fff; color: #6b7280; }
+.season-modal-btn.cancel:hover { background: #f9fafb; }
+.season-modal-btn.confirm { border: none; background: #059669; color: #fff; }
+.season-modal-btn.confirm:hover { background: #047857; }
+
+.season-del-btn {
+  padding: 4px 10px; border-radius: 8px;
+  border: 1px solid #d1d5db; background: #f3f4f6;
+  color: #6b7280; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.15s; font-family: inherit;
+}
+.season-del-btn:hover { background: #e5e7eb; border-color: #9ca3af; }
+
+.ref-modal-overlay {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); z-index: 100;
+  justify-content: center; align-items: center;
+}
+.ref-modal-overlay.show { display: flex; }
+.ref-modal {
+  background: #fff; border-radius: 12px; padding: 28px;
+  width: 380px; max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+.ref-modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 18px; color: #1e293b; }
+.ref-modal-row { margin-bottom: 14px; }
+.ref-modal-row label { font-size: 13px; font-weight: 600; color: #6b7280; display: block; margin-bottom: 4px; }
+.ref-modal-row input {
+  width: 100%; padding: 8px 12px;
+  border: 1px solid #e5e7eb; border-radius: 8px;
+  font-size: 14px; font-family: inherit; outline: none;
+}
+.ref-modal-row input:focus { border-color: #059669; box-shadow: 0 0 0 2px rgba(5,150,105,0.1); }
+.ref-modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+/* ── Season Edit Mode ── */
+.season-add-btn:hover, .season-edit-btn:hover { background: transparent; border-color: #059669; color: #059669; }
+
+.edit-mode-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px; margin-bottom: 20px;
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+}
+.edit-mode-bar-left { display: flex; align-items: center; gap: 12px; }
+.edit-mode-bar-left span { font-size: 16px; font-weight: 700; color: #1e293b; }
+.edit-mode-bar-right { display: flex; gap: 8px; }
+
+.edit-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+}
+.edit-card {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 20px 16px; position: relative;
+}
+.edit-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; border-radius: 10px 10px 0 0;
+  background: var(--accent);
+}
+.edit-card-brand {
+  font-family: 'Inter'; font-size: 16px; font-weight: 800;
+  color: #1e293b; margin-bottom: 14px; letter-spacing: -0.2px;
+}
+.edit-field { margin-bottom: 12px; }
+.edit-field-label {
+  font-size: 12px; font-weight: 700; color: #6b7280;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;
+}
+.edit-field textarea, .edit-field input[type="text"] {
+  width: 100%; padding: 7px 10px;
+  border: 1px solid #e5e7eb; border-radius: 6px;
+  font-size: 13px; font-family: inherit; outline: none;
+  background: #f9fafb; color: #374151; resize: vertical;
+}
+.edit-field textarea:focus, .edit-field input[type="text"]:focus {
+  border-color: #059669; box-shadow: 0 0 0 2px rgba(5,150,105,0.1);
+}
+.edit-field textarea { min-height: 50px; }
+.edit-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.edit-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 4px; font-size: 12px;
+  background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d;
+}
+.edit-tag-x {
+  cursor: pointer; font-size: 12px; font-weight: 700;
+  color: #6b7280; line-height: 1;
+}
+.edit-tag-x:hover { color: #dc2626; }
+.edit-ref-item {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 4px; font-size: 12px; color: #374151;
+}
+.edit-ref-item span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.edit-ref-item a { color: #6b7280; font-size: 11px; word-break: break-all; }
+
+.editable-cell { cursor: pointer; position: relative; min-height: 30px; }
+.editable-cell:hover { background: rgba(5,150,105,0.04); }
+.inline-edit-input {
+  width: 100%; padding: 6px 8px;
+  border: 1px solid #059669; border-radius: 6px;
+  font-size: 14px; font-family: inherit; outline: none;
+  background: #fff; box-shadow: 0 0 0 2px rgba(5,150,105,0.15);
+}
+.inline-edit-textarea {
+  width: 100%; padding: 6px 8px;
+  border: 1px solid #059669; border-radius: 6px;
+  font-size: 14px; font-family: inherit; outline: none;
+  background: #fff; resize: vertical; min-height: 60px;
+  box-shadow: 0 0 0 2px rgba(5,150,105,0.15);
+}
 </style>
 </head>
 <body>
@@ -566,29 +759,22 @@ body {
 <!-- HEADER -->
 <header class="header">
   <div class="header-left">
-    <div class="header-logo">FMJ International</div>
-    <div class="header-divider"></div>
-    <div class="header-title">Brand Direction Dashboard</div>
+    <div class="header-logo" style="cursor:pointer;" onclick="switchHeaderTab('dashboard')">FMJ <span style="font-weight:300;">International</span></div>
   </div>
   <div class="header-right">
-    <button class="tb-btn" onclick="exportData()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      데이터 백업
-    </button>
-    <button class="tb-btn" onclick="document.getElementById('import-file').click()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      데이터 복원
-    </button>
     <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
-    <button class="tb-btn" onclick="window.print()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      인쇄 / PDF
-    </button>
-    <div class="header-badge">26 S/S</div>
+    <span class="header-tab-divider">|</span>
+    <span class="header-tab" data-tab="sample" onclick="switchHeaderTab('sample')">샘플구매원장</span>
+    <span class="header-tab-divider">|</span>
+    <span class="header-tab" data-tab="schedule" onclick="switchHeaderTab('schedule')">디자인스케줄</span>
+    <span class="header-tab-divider">|</span>
   </div>
 </header>
 
 <div class="main">
+
+<!-- TAB: Dashboard (기본) -->
+<div id="tab-dashboard" class="tab-content active">
 
 <div class="section-block brand-intro">
 <!-- ═══════════════════════════════════════════════════ -->
@@ -883,171 +1069,111 @@ body {
 
 <div class="section-block season-concept">
 <!-- ═══════════════════════════════════════════════════ -->
-<!-- SECTION 2: COMPARISON MATRIX (가로 비교 테이블)     -->
+<!-- SECTION 2: SEASON CONCEPT (시즌별 관리)             -->
 <!-- ═══════════════════════════════════════════════════ -->
-<div class="s-title">시즌 컨셉</div>
+<div class="season-header">
+  <div class="s-title">시즌 컨셉</div>
+  <div class="season-tabs" id="season-tabs"></div>
+  <div class="season-btn-group">
+    <button class="season-add-btn" onclick="openSeasonModal()">+ 새 시즌</button>
+    <button class="season-edit-btn" onclick="enterEditMode()">편집</button>
+  </div>
+</div>
+<div id="season-table-container"></div>
+</div>
 
-<table class="matrix">
-  <thead>
-    <tr>
-      <th></th>
-      <th class="brand-col" style="--accent:#E67E22;">FEPL</th>
-      <th class="brand-col" style="--accent:#4A6FA5;">JEMUT</th>
-      <th class="brand-col" style="--accent:#F39C12;">WV PROJECT</th>
-      <th class="brand-col" style="--accent:#D4A373;">PERSTEP</th>
-      <th class="brand-col" style="--accent:#E74C3C;">EZ</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="row-label">시즌 테마</td>
-      <td><strong>Work in Cargo.<br>Live in Utility.</strong><br><span style="color:#6b7280;font-size:12px;">현장에서 완성되는 현대적 워크웨어</span></td>
-      <td><strong>Simple fits,<br>real days.</strong><br><span style="color:#6b7280;font-size:12px;">유니클로 실용성 + 랄프로렌 단정함</span></td>
-      <td><strong>Sunny Ordinary</strong><br><span style="color:#6b7280;font-size:12px;">80년대 아메리칸 레트로 이지 스트릿</span></td>
-      <td><strong>Fit the Life</strong><br><span style="color:#6b7280;font-size:12px;">삶에 꼭 맞게 스며드는 리얼 웨어</span></td>
-      <td><strong>FEED BREAKER</strong><br><span style="color:#6b7280;font-size:12px;">피드를 찢고 나온 남자</span></td>
-    </tr>
-    <tr>
-      <td class="row-label">시즌 키워드</td>
-      <td>
-        <div class="cell-kw">
-          <span class="kw-tag">작업복</span>
-          <span class="kw-tag">내구성</span>
-          <span class="kw-tag">모던유틸리티</span>
-        </div>
-      </td>
-      <td>
-        <div class="cell-kw">
-          <span class="kw-tag">데일리</span>
-          <span class="kw-tag">베이직</span>
-          <span class="kw-tag">남친룩</span>
-        </div>
-      </td>
-      <td>
-        <div class="cell-kw">
-          <span class="kw-tag">아메리칸캐주얼</span>
-          <span class="kw-tag">레트로</span>
-          <span class="kw-tag">빈티지</span>
-        </div>
-      </td>
-      <td>
-        <div class="cell-kw">
-          <span class="kw-tag">아메카지</span>
-          <span class="kw-tag">라이프</span>
-          <span class="kw-tag">리얼웨어</span>
-        </div>
-      </td>
-      <td>
-        <div class="cell-kw">
-          <span class="kw-tag">스트릿</span>
-          <span class="kw-tag">캐주얼</span>
-          <span class="kw-tag">그런지</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="row-label">추가 키워드</td>
-      <td>
-        <div class="ck-tags" id="ck-fepl-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="ck-input-fepl-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('fepl-s')}">
-          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('fepl-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="ck-tags" id="ck-jemut-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="ck-input-jemut-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('jemut-s')}">
-          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('jemut-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="ck-tags" id="ck-wv-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="ck-input-wv-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('wv-s')}">
-          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('wv-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="ck-tags" id="ck-ps-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="ck-input-ps-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('ps-s')}">
-          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('ps-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="ck-tags" id="ck-ez-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="ck-input-ez-s" placeholder="키워드 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addKw('ez-s')}">
-          <button class="ck-add-btn" onclick="event.stopPropagation();addKw('ez-s')">추가</button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="row-label">타겟</td>
-      <td>25-45세 직장인</td>
-      <td>2~30대 남성</td>
-      <td>16~23세 남녀</td>
-      <td>27~42세 남성</td>
-      <td>18~26세 남성</td>
-    </tr>
-    <tr>
-      <td class="row-label">참고 브랜드</td>
-      <td><a href="https://www.carhartt-wip.com" target="_blank" class="ref-link">Carhartt WIP</a><br><a href="https://www.dickies.com" target="_blank" class="ref-link">Dickies</a><br><a href="https://apresse.jp" target="_blank" class="ref-link">A.PRESSE</a><span id="comp-ref-fepl-s"></span></td>
-      <td><a href="https://www.uniqlo.com" target="_blank" class="ref-link">UNIQLO</a><br><a href="https://www.ralphlauren.com" target="_blank" class="ref-link">Ralph Lauren</a><br><a href="https://www.cos.com" target="_blank" class="ref-link">COS</a><span id="comp-ref-jemut-s"></span></td>
-      <td><a href="https://www.instagram.com/greenbutter_official" target="_blank" class="ref-link">Green Butter</a><br><a href="https://www.instagram.com/teket_official" target="_blank" class="ref-link">teket</a><br><a href="https://adererror.com" target="_blank" class="ref-link">ADER ERROR</a><span id="comp-ref-wv-s"></span></td>
-      <td><a href="https://descendant.jp" target="_blank" class="ref-link">DESCENDANT</a><br><a href="https://www.danton.jp" target="_blank" class="ref-link">DANTON</a><br><a href="https://www.beams.co.jp" target="_blank" class="ref-link">BEAMS+</a><span id="comp-ref-ps-s"></span></td>
-      <td><a href="https://www.stussy.com" target="_blank" class="ref-link">Stussy</a><br><a href="https://thisisneverthat.com" target="_blank" class="ref-link">thisisneverthat</a><br><a href="https://032c.com" target="_blank" class="ref-link">032c</a><span id="comp-ref-ez-s"></span></td>
-    </tr>
-    <tr>
-      <td class="row-label">추가 브랜드</td>
-      <td>
-        <div class="cr-tags" id="cr-fepl-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="cr-input-fepl-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('fepl-s')}">
-          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('fepl-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="cr-tags" id="cr-jemut-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="cr-input-jemut-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('jemut-s')}">
-          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('jemut-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="cr-tags" id="cr-wv-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="cr-input-wv-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('wv-s')}">
-          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('wv-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="cr-tags" id="cr-ps-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="cr-input-ps-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('ps-s')}">
-          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('ps-s')">추가</button>
-        </div>
-      </td>
-      <td>
-        <div class="cr-tags" id="cr-ez-s"></div>
-        <div class="ck-input-wrap">
-          <input class="ck-input" id="cr-input-ez-s" placeholder="브랜드명 입력 후 Enter" onkeydown="if(event.key==='Enter'){event.stopPropagation();addRef('ez-s')}">
-          <button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();addRef('ez-s')">추가</button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<!-- Season Modal -->
+<div class="season-modal-overlay" id="season-modal" onclick="if(event.target===this)closeSeasonModal()">
+  <div class="season-modal">
+    <h3>새 시즌 추가</h3>
+    <div class="season-modal-row">
+      <div class="season-modal-label">연도</div>
+      <input type="number" class="season-modal-input" id="season-year" value="2026" min="2020" max="2040">
+    </div>
+    <div class="season-modal-row">
+      <div class="season-modal-label">시즌</div>
+      <div class="season-modal-radio-group">
+        <label class="season-modal-radio"><input type="radio" name="season-type" value="S/S" checked> S/S</label>
+        <label class="season-modal-radio"><input type="radio" name="season-type" value="F/W"> F/W</label>
+      </div>
+    </div>
+    <div class="season-modal-row">
+      <div class="season-modal-label">시작 방식</div>
+      <div class="season-modal-radio-group">
+        <label class="season-modal-radio"><input type="radio" name="season-start" value="copy" checked> 현재 시즌 복사</label>
+        <label class="season-modal-radio"><input type="radio" name="season-start" value="blank"> 빈칸으로 시작</label>
+      </div>
+    </div>
+    <div class="season-modal-actions">
+      <button class="season-modal-btn cancel" onclick="closeSeasonModal()">취소</button>
+      <button class="season-modal-btn confirm" onclick="createSeason()">추가</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ref Brand Add Modal -->
+<div class="ref-modal-overlay" id="ref-modal" onclick="if(event.target===this)closeRefModal()">
+  <div class="ref-modal">
+    <h3>참고 브랜드 추가</h3>
+    <input type="hidden" id="ref-modal-brand">
+    <div class="ref-modal-row">
+      <label>브랜드명</label>
+      <input type="text" id="ref-modal-name" placeholder="브랜드명 입력">
+    </div>
+    <div class="ref-modal-row">
+      <label>URL (선택)</label>
+      <input type="text" id="ref-modal-url" placeholder="https://...">
+    </div>
+    <div class="ref-modal-actions">
+      <button class="season-modal-btn cancel" onclick="closeRefModal()">취소</button>
+      <button class="season-modal-btn confirm" onclick="confirmAddRef()">등록</button>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 
+</div><!-- /tab-dashboard -->
+
+<!-- TAB: 샘플구매원장 -->
+<div id="tab-sample" class="tab-content">
+  <div class="section-block">
+    <div class="tab-placeholder">샘플구매원장 콘텐츠 준비 중</div>
+  </div>
+</div>
+
+<!-- TAB: 디자인스케줄 -->
+<div id="tab-schedule" class="tab-content">
+  <div class="section-block">
+    <div class="tab-placeholder">디자인스케줄 콘텐츠 준비 중</div>
+  </div>
+</div>
+
 </div><!-- /main -->
 
-<footer class="footer">FMJ INTERNATIONAL &mdash; BRAND DIRECTION DASHBOARD &mdash; 26 S/S &mdash; INTERNAL USE ONLY</footer>
+<footer class="footer">&copy; FMJINTERNATIONAL Corp. All rights reserved.</footer>
 
 <script>
+/* ══════════════════════════════════════ */
+/* HEADER TAB NAVIGATION                  */
+/* ══════════════════════════════════════ */
+function switchHeaderTab(tabName) {
+  // Hide all tab contents
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  // Deactivate all header tabs
+  document.querySelectorAll('.header-tab').forEach(el => el.classList.remove('active'));
+
+  if (tabName === 'dashboard') {
+    document.getElementById('tab-dashboard').classList.add('active');
+    // No tab highlighted - dashboard is default (no tab selected)
+  } else {
+    const target = document.getElementById('tab-' + tabName);
+    if (target) target.classList.add('active');
+    const tab = document.querySelector('.header-tab[data-tab="' + tabName + '"]');
+    if (tab) tab.classList.add('active');
+  }
+}
+
 function togglePanel(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -1208,6 +1334,459 @@ function syncRefToComp(brand) {
   comp.innerHTML = refs.map(r => `<br><span class="ref-link" style="color:#059669;border-bottom:1px dashed #a7f3d0;">${r}</span>`).join('');
 }
 
+/* ══════════════════════════════════════ */
+/* SEASON MANAGEMENT                      */
+/* ══════════════════════════════════════ */
+const SEASON_KEY = 'bd_seasons';
+const BRAND_IDS = ['fepl','jemut','wv','ps','ez'];
+const BRAND_NAMES = {fepl:'FEPL',jemut:'JEMUT',wv:'WV PROJECT',ps:'PERSTEP',ez:'EZ'};
+const BRAND_COLORS = {fepl:'#E67E22',jemut:'#4A6FA5',wv:'#F39C12',ps:'#D4A373',ez:'#E74C3C'};
+
+function getDefaultSeasons() {
+  return {
+    activeSeason: '2026-ss',
+    seasons: {
+      '2026-ss': {
+        label: '2026 S/S',
+        brands: {
+          fepl: { theme:'Work in Cargo.\nLive in Utility.', themeDesc:'현장에서 완성되는 현대적 워크웨어', keywords:['작업복','내구성','모던유틸리티'], target:'25-45세 직장인', refs:[{name:'Carhartt WIP',url:'https://www.carhartt-wip.com'},{name:'Dickies',url:'https://www.dickies.com'},{name:'A.PRESSE',url:'https://apresse.jp'}] },
+          jemut: { theme:'Simple fits,\nreal days.', themeDesc:'유니클로 실용성 + 랄프로렌 단정함', keywords:['데일리','베이직','남친룩'], target:'2~30대 남성', refs:[{name:'UNIQLO',url:'https://www.uniqlo.com'},{name:'Ralph Lauren',url:'https://www.ralphlauren.com'},{name:'COS',url:'https://www.cos.com'}] },
+          wv: { theme:'Sunny Ordinary', themeDesc:'80년대 아메리칸 레트로 이지 스트릿', keywords:['아메리칸캐주얼','레트로','빈티지'], target:'16~23세 남녀', refs:[{name:'Green Butter',url:'https://www.instagram.com/greenbutter_official'},{name:'teket',url:'https://www.instagram.com/teket_official'},{name:'ADER ERROR',url:'https://adererror.com'}] },
+          ps: { theme:'Fit the Life', themeDesc:'삶에 꼭 맞게 스며드는 리얼 웨어', keywords:['아메카지','라이프','리얼웨어'], target:'27~42세 남성', refs:[{name:'DESCENDANT',url:'https://descendant.jp'},{name:'DANTON',url:'https://www.danton.jp'},{name:'BEAMS+',url:'https://www.beams.co.jp'}] },
+          ez: { theme:'FEED BREAKER', themeDesc:'피드를 찢고 나온 남자', keywords:['스트릿','캐주얼','그런지'], target:'18~26세 남성', refs:[{name:'Stussy',url:'https://www.stussy.com'},{name:'thisisneverthat',url:'https://thisisneverthat.com'},{name:'032c',url:'https://032c.com'}] }
+        }
+      }
+    }
+  };
+}
+
+function getSeasonData() {
+  try {
+    const data = JSON.parse(localStorage.getItem(SEASON_KEY));
+    if (data && data.seasons && Object.keys(data.seasons).length > 0) {
+      // Auto-convert old string refs to {name,url} objects & fill missing URLs
+      const REF_URLS = {'Carhartt WIP':'https://www.carhartt-wip.com','Dickies':'https://www.dickies.com','A.PRESSE':'https://apresse.jp','UNIQLO':'https://www.uniqlo.com','Ralph Lauren':'https://www.ralphlauren.com','COS':'https://www.cos.com','Green Butter':'https://www.instagram.com/greenbutter_official','teket':'https://www.instagram.com/teket_official','ADER ERROR':'https://adererror.com','DESCENDANT':'https://descendant.jp','DANTON':'https://www.danton.jp','BEAMS+':'https://www.beams.co.jp','Stussy':'https://www.stussy.com','thisisneverthat':'https://thisisneverthat.com','032c':'https://032c.com'};
+      let changed = false;
+      Object.values(data.seasons).forEach(s => {
+        Object.values(s.brands).forEach(b => {
+          if (b.refs) {
+            b.refs = b.refs.map(r => {
+              if (typeof r === 'string') { changed = true; return {name:r, url:REF_URLS[r]||''}; }
+              if (!r.url && REF_URLS[r.name]) { changed = true; return {name:r.name, url:REF_URLS[r.name]}; }
+              return r;
+            });
+          }
+        });
+      });
+      if (changed) saveSeasonData(data);
+      return data;
+    }
+    return migrateOldData();
+  } catch { return migrateOldData(); }
+}
+
+function saveSeasonData(data) {
+  localStorage.setItem(SEASON_KEY, JSON.stringify(data));
+}
+
+function migrateOldData() {
+  const defaults = getDefaultSeasons();
+  try {
+    const oldCk = JSON.parse(localStorage.getItem(CK_KEY)) || {};
+    const oldCr = JSON.parse(localStorage.getItem(CR_KEY)) || {};
+    const season = defaults.seasons['2026-ss'];
+    const idMap = {'fepl-s':'fepl','jemut-s':'jemut','wv-s':'wv','ps-s':'ps','ez-s':'ez'};
+    Object.entries(idMap).forEach(([oldId, newId]) => {
+      if (oldCk[oldId] && oldCk[oldId].length > 0) {
+        oldCk[oldId].forEach(kw => { if (!season.brands[newId].keywords.includes(kw)) season.brands[newId].keywords.push(kw); });
+      }
+      if (oldCr[oldId] && oldCr[oldId].length > 0) {
+        const existingNames = season.brands[newId].refs.map(r => getRefName(r));
+        oldCr[oldId].forEach(r => { if (!existingNames.includes(r)) season.brands[newId].refs.push({name:r,url:''}); });
+      }
+    });
+  } catch {}
+  saveSeasonData(defaults);
+  return defaults;
+}
+
+/* ── Season Tabs ── */
+function renderSeasonTabs() {
+  const data = getSeasonData();
+  const container = document.getElementById('season-tabs');
+  if (!container) return;
+  const keys = Object.keys(data.seasons);
+  container.innerHTML = keys.map(key => {
+    const s = data.seasons[key];
+    const isActive = key === data.activeSeason;
+    const canDelete = keys.length > 1;
+    return `<div class="season-tab${isActive ? ' active' : ''}" onclick="switchSeason('${key}')">
+      ${s.label}${canDelete ? `<span class="season-tab-x" onclick="event.stopPropagation();deleteSeason('${key}')">&times;</span>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function switchSeason(key) {
+  const data = getSeasonData();
+  if (!data.seasons[key]) return;
+  data.activeSeason = key;
+  saveSeasonData(data);
+  renderSeasonTabs();
+  renderSeasonTable();
+}
+
+function deleteSeason(key) {
+  const data = getSeasonData();
+  if (Object.keys(data.seasons).length <= 1) return;
+  if (!confirm(data.seasons[key].label + ' 시즌을 삭제하시겠습니까?')) return;
+  delete data.seasons[key];
+  if (data.activeSeason === key) data.activeSeason = Object.keys(data.seasons)[0];
+  saveSeasonData(data);
+  renderSeasonTabs();
+  renderSeasonTable();
+}
+
+/* ── Season Modal ── */
+function openSeasonModal() {
+  document.getElementById('season-modal').classList.add('show');
+}
+function closeSeasonModal() {
+  document.getElementById('season-modal').classList.remove('show');
+}
+
+function createSeason() {
+  const year = document.getElementById('season-year').value;
+  const type = document.querySelector('input[name="season-type"]:checked').value;
+  const startMode = document.querySelector('input[name="season-start"]:checked').value;
+  const key = year + '-' + (type === 'S/S' ? 'ss' : 'fw');
+  const label = year + ' ' + type;
+  const data = getSeasonData();
+  if (data.seasons[key]) { alert(label + ' 시즌이 이미 존재합니다.'); return; }
+  let newSeason;
+  if (startMode === 'copy') {
+    newSeason = JSON.parse(JSON.stringify(data.seasons[data.activeSeason]));
+    newSeason.label = label;
+  } else {
+    newSeason = { label: label, brands: {} };
+    BRAND_IDS.forEach(id => { newSeason.brands[id] = { theme:'', themeDesc:'', keywords:[], target:'', refs:[] }; });
+  }
+  data.seasons[key] = newSeason;
+  data.activeSeason = key;
+  saveSeasonData(data);
+  closeSeasonModal();
+  renderSeasonTabs();
+  renderSeasonTable();
+}
+
+/* ── Season Table Rendering ── */
+function renderSeasonTable() {
+  const container = document.getElementById('season-table-container');
+  if (!container) return;
+  const data = getSeasonData();
+  const season = data.seasons[data.activeSeason];
+  if (!season) return;
+
+  let html = '<table class="matrix"><thead><tr><th></th>';
+  BRAND_IDS.forEach(id => { html += '<th class="brand-col" style="--accent:' + BRAND_COLORS[id] + '">' + BRAND_NAMES[id] + '</th>'; });
+  html += '</tr></thead><tbody>';
+
+  // Row 1: 시즌 테마
+  html += '<tr><td class="row-label">시즌 테마</td>';
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    const themeHtml = (b.theme || '').split('\n').join('<br>');
+    html += '<td class="editable-cell" ondblclick="editTheme(\'' + id + '\',this)"><strong>' + themeHtml + '</strong><br><span style="color:#6b7280;font-size:12px;">' + (b.themeDesc || '') + '</span></td>';
+  });
+  html += '</tr>';
+
+  // Row 2: 시즌 키워드
+  html += '<tr><td class="row-label">시즌 키워드</td>';
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    const kwHtml = (b.keywords || []).map(kw =>
+      '<span class="kw-tag">' + kw + '</span>'
+    ).join('');
+    html += '<td><div class="cell-kw">' + kwHtml + '</div>';
+    html += '<div class="ck-input-wrap" style="margin-top:6px;"><input class="ck-input" id="skw-input-' + id + '" placeholder="키워드 추가" onkeydown="if(event.key===\'Enter\'){event.stopPropagation();addSeasonKw(\'' + id + '\')}">';
+    html += '<button class="ck-add-btn" onclick="event.stopPropagation();addSeasonKw(\'' + id + '\')">추가</button></div></td>';
+  });
+  html += '</tr>';
+
+  // Row 3: 타겟
+  html += '<tr><td class="row-label">타겟</td>';
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    html += '<td class="editable-cell" ondblclick="editTarget(\'' + id + '\',this)">' + (b.target || '') + '</td>';
+  });
+  html += '</tr>';
+
+  // Row 4: 참고 브랜드
+  html += '<tr><td class="row-label">참고 브랜드</td>';
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    const refHtml = (b.refs || []).map(r => {
+      const name = typeof r === 'string' ? r : r.name;
+      const url = typeof r === 'string' ? '' : (r.url || '');
+      if (url) return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="ref-link" onclick="window.open(\'' + url.replace(/'/g,"\\'") + '\',\'_blank\');return false;">' + name + '</a>';
+      return '<span class="ref-link">' + name + '</span>';
+    }).join('<br>');
+    html += '<td><div>' + refHtml + '</div>';
+    html += '<div class="ck-input-wrap" style="margin-top:6px;">';
+    html += '<button class="ck-add-btn cr-add-btn" onclick="event.stopPropagation();openRefModal(\'' + id + '\')">추가</button></div></td>';
+  });
+  html += '</tr>';
+
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+/* ── Inline Editing ── */
+function editTheme(brandId, cell) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  cell.innerHTML = '<textarea class="inline-edit-textarea" id="edit-theme-' + brandId + '" placeholder="시즌 테마">' + (b.theme || '') + '</textarea>' +
+    '<input class="inline-edit-input" id="edit-desc-' + brandId + '" placeholder="테마 설명" value="' + (b.themeDesc || '').replace(/"/g,'&quot;') + '" style="margin-top:4px;">';
+  const ta = document.getElementById('edit-theme-' + brandId);
+  const di = document.getElementById('edit-desc-' + brandId);
+  ta.focus();
+  function save() {
+    const d = getSeasonData();
+    d.seasons[d.activeSeason].brands[brandId].theme = ta.value.trim();
+    d.seasons[d.activeSeason].brands[brandId].themeDesc = di.value.trim();
+    saveSeasonData(d);
+    renderSeasonTable();
+  }
+  ta.addEventListener('blur', function() { setTimeout(function(){ if(document.activeElement!==di) save(); },150); });
+  di.addEventListener('blur', function() { setTimeout(function(){ if(document.activeElement!==ta) save(); },150); });
+  di.addEventListener('keydown', function(e) { if(e.key==='Enter'){ e.preventDefault(); save(); } });
+}
+
+function editTarget(brandId, cell) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  cell.innerHTML = '<input class="inline-edit-input" id="edit-target-' + brandId + '" value="' + (b.target || '').replace(/"/g,'&quot;') + '">';
+  const inp = document.getElementById('edit-target-' + brandId);
+  inp.focus();
+  function save() {
+    const d = getSeasonData();
+    d.seasons[d.activeSeason].brands[brandId].target = inp.value.trim();
+    saveSeasonData(d);
+    renderSeasonTable();
+  }
+  inp.addEventListener('blur', save);
+  inp.addEventListener('keydown', function(e) { if(e.key==='Enter'){ e.preventDefault(); save(); } });
+}
+
+/* ── Season Keywords & Refs ── */
+function addSeasonKw(brandId) {
+  const input = document.getElementById('skw-input-' + brandId);
+  if (!input) return;
+  const kw = input.value.trim();
+  if (!kw) return;
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.keywords) b.keywords = [];
+  if (b.keywords.includes(kw)) { input.value = ''; return; }
+  b.keywords.push(kw);
+  saveSeasonData(data);
+  renderSeasonTable();
+}
+
+function removeSeasonKw(brandId, kw) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.keywords) return;
+  b.keywords = b.keywords.filter(k => k !== kw);
+  saveSeasonData(data);
+  renderSeasonTable();
+}
+
+function openDeleteKw(brandId) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.keywords || b.keywords.length === 0) { alert('삭제할 키워드가 없습니다.'); return; }
+  const kw = prompt('삭제할 키워드를 입력하세요:\n현재: ' + b.keywords.join(', '));
+  if (!kw) return;
+  const trimmed = kw.trim();
+  if (b.keywords.includes(trimmed)) { removeSeasonKw(brandId, trimmed); }
+  else { alert('해당 키워드를 찾을 수 없습니다.'); }
+}
+
+function getRefName(r) { return typeof r === 'string' ? r : r.name; }
+
+function openRefModal(brandId) {
+  document.getElementById('ref-modal-brand').value = brandId;
+  document.getElementById('ref-modal-name').value = '';
+  document.getElementById('ref-modal-url').value = '';
+  document.getElementById('ref-modal').classList.add('show');
+  setTimeout(function(){ document.getElementById('ref-modal-name').focus(); }, 100);
+}
+function closeRefModal() {
+  document.getElementById('ref-modal').classList.remove('show');
+}
+function confirmAddRef() {
+  const brandId = document.getElementById('ref-modal-brand').value;
+  const name = document.getElementById('ref-modal-name').value.trim();
+  const url = document.getElementById('ref-modal-url').value.trim();
+  if (!name) { alert('브랜드명을 입력하세요.'); return; }
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.refs) b.refs = [];
+  if (b.refs.some(r => getRefName(r) === name)) { alert('이미 존재하는 브랜드입니다.'); return; }
+  b.refs.push({name:name, url:url});
+  saveSeasonData(data);
+  closeRefModal();
+  if (editModeActive) renderEditMode();
+  else renderSeasonTable();
+}
+
+function removeSeasonRef(brandId, name) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.refs) return;
+  b.refs = b.refs.filter(r => getRefName(r) !== name);
+  saveSeasonData(data);
+  renderSeasonTable();
+}
+
+function openDeleteRef(brandId) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.refs || b.refs.length === 0) { alert('삭제할 브랜드가 없습니다.'); return; }
+  const names = b.refs.map(r => getRefName(r));
+  const r = prompt('삭제할 브랜드를 입력하세요:\n현재: ' + names.join(', '));
+  if (!r) return;
+  const trimmed = r.trim();
+  if (names.includes(trimmed)) { removeSeasonRef(brandId, trimmed); }
+  else { alert('해당 브랜드를 찾을 수 없습니다.'); }
+}
+
+/* ── Season Edit Mode ── */
+let editModeActive = false;
+
+function enterEditMode() {
+  editModeActive = true;
+  renderEditMode();
+}
+
+function exitEditMode() {
+  editModeActive = false;
+  renderSeasonTable();
+}
+
+function renderEditMode() {
+  const container = document.getElementById('season-table-container');
+  if (!container) return;
+  const data = getSeasonData();
+  const season = data.seasons[data.activeSeason];
+  if (!season) return;
+
+  let html = '<div class="edit-mode-bar"><div class="edit-mode-bar-left">';
+  html += '<span>' + season.label + ' 시즌 편집</span></div>';
+  html += '<div class="edit-mode-bar-right">';
+  html += '<button class="season-modal-btn cancel" onclick="exitEditMode()">닫기</button>';
+  html += '<button class="season-modal-btn confirm" onclick="saveEditMode()">저장</button>';
+  html += '</div></div>';
+
+  html += '<div class="edit-grid">';
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    html += '<div class="edit-card" style="--accent:' + BRAND_COLORS[id] + '">';
+    html += '<div class="edit-card-brand">' + BRAND_NAMES[id] + '</div>';
+
+    // 시즌 테마
+    html += '<div class="edit-field"><div class="edit-field-label">시즌 테마</div>';
+    html += '<textarea id="ed-theme-' + id + '">' + (b.theme || '') + '</textarea></div>';
+
+    // 테마 설명
+    html += '<div class="edit-field"><div class="edit-field-label">테마 설명</div>';
+    html += '<input type="text" id="ed-desc-' + id + '" value="' + (b.themeDesc || '').replace(/"/g,'&quot;') + '"></div>';
+
+    // 시즌 키워드
+    html += '<div class="edit-field"><div class="edit-field-label">시즌 키워드</div>';
+    html += '<div class="edit-tags" id="ed-kw-tags-' + id + '">';
+    (b.keywords || []).forEach(kw => {
+      html += '<span class="edit-tag">' + kw + '<span class="edit-tag-x" onclick="editRemoveKw(\'' + id + '\',\'' + kw.replace(/'/g,"\\'") + '\')">&times;</span></span>';
+    });
+    html += '</div>';
+    html += '<div class="ck-input-wrap"><input class="ck-input" id="ed-kw-input-' + id + '" placeholder="키워드 추가" onkeydown="if(event.key===\'Enter\'){event.preventDefault();editAddKw(\'' + id + '\')}">';
+    html += '<button class="ck-add-btn" onclick="editAddKw(\'' + id + '\')">추가</button></div></div>';
+
+    // 타겟
+    html += '<div class="edit-field"><div class="edit-field-label">타겟</div>';
+    html += '<input type="text" id="ed-target-' + id + '" value="' + (b.target || '').replace(/"/g,'&quot;') + '"></div>';
+
+    // 참고 브랜드
+    html += '<div class="edit-field"><div class="edit-field-label">참고 브랜드</div>';
+    html += '<div id="ed-ref-list-' + id + '">';
+    (b.refs || []).forEach((r,i) => {
+      const name = getRefName(r);
+      const url = typeof r === 'string' ? '' : (r.url || '');
+      html += '<div class="edit-ref-item"><span>' + name + '</span>';
+      if (url) html += '<a href="' + url + '" target="_blank">링크</a>';
+      html += '<span class="edit-tag-x" onclick="editRemoveRef(\'' + id + '\',' + i + ')">&times;</span></div>';
+    });
+    html += '</div>';
+    html += '<button class="ck-add-btn" style="margin-top:4px;" onclick="openRefModal(\'' + id + '\')">+ 브랜드 추가</button></div>';
+
+    html += '</div>'; // /edit-card
+  });
+  html += '</div>'; // /edit-grid
+
+  container.innerHTML = html;
+}
+
+function saveEditMode() {
+  const data = getSeasonData();
+  const season = data.seasons[data.activeSeason];
+  BRAND_IDS.forEach(id => {
+    const b = season.brands[id];
+    const themeEl = document.getElementById('ed-theme-' + id);
+    const descEl = document.getElementById('ed-desc-' + id);
+    const targetEl = document.getElementById('ed-target-' + id);
+    if (themeEl) b.theme = themeEl.value.trim();
+    if (descEl) b.themeDesc = descEl.value.trim();
+    if (targetEl) b.target = targetEl.value.trim();
+  });
+  saveSeasonData(data);
+  exitEditMode();
+}
+
+function editAddKw(brandId) {
+  const input = document.getElementById('ed-kw-input-' + brandId);
+  if (!input) return;
+  const kw = input.value.trim();
+  if (!kw) return;
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.keywords) b.keywords = [];
+  if (b.keywords.includes(kw)) { input.value = ''; return; }
+  b.keywords.push(kw);
+  saveSeasonData(data);
+  renderEditMode();
+}
+
+function editRemoveKw(brandId, kw) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.keywords) return;
+  b.keywords = b.keywords.filter(k => k !== kw);
+  saveSeasonData(data);
+  renderEditMode();
+}
+
+function editRemoveRef(brandId, idx) {
+  const data = getSeasonData();
+  const b = data.seasons[data.activeSeason].brands[brandId];
+  if (!b.refs) return;
+  b.refs.splice(idx, 1);
+  saveSeasonData(data);
+  renderEditMode();
+}
+
+// Override confirmAddRef to re-render edit mode if active
+const _origConfirmAddRef = typeof confirmAddRef === 'function' ? confirmAddRef : null;
+
 /* ── Memo / Notes ── */
 const MEMO_KEY = 'bd_memos';
 let memoTimer = {};
@@ -1260,14 +1839,19 @@ function detectOverlap() {
     });
   });
 
-  // Also add season keywords from cards
-  const seasonMap = { 'fepl-s': 'FEPL', 'jemut-s': 'JEMUT', 'wv-s': 'WV PROJECT', 'ps-s': 'PERSTEP', 'ez-s': 'EZ' };
-  const ckData = getCkData();
-  Object.entries(seasonMap).forEach(([id, name]) => {
-    if (ckData[id]) {
-      ckData[id].forEach(kw => { if (!brandKws[name].includes(kw)) brandKws[name].push(kw); });
+  // Also add season keywords from season data
+  try {
+    const sData = getSeasonData();
+    const season = sData.seasons[sData.activeSeason];
+    if (season) {
+      const idToName = {fepl:'FEPL',jemut:'JEMUT',wv:'WV PROJECT',ps:'PERSTEP',ez:'EZ'};
+      Object.entries(idToName).forEach(([id, name]) => {
+        if (season.brands[id] && season.brands[id].keywords) {
+          season.brands[id].keywords.forEach(kw => { if (!brandKws[name].includes(kw)) brandKws[name].push(kw); });
+        }
+      });
     }
-  });
+  } catch {}
 
   // Find overlaps
   const allKws = {};
@@ -1298,11 +1882,12 @@ function detectOverlap() {
 /* ── Data Export / Import ── */
 function exportData() {
   const data = {
-    version: 1,
+    version: 2,
     date: new Date().toISOString(),
     keywords: getCkData(),
     refs: getCrData(),
-    memos: getMemos()
+    memos: getMemos(),
+    seasons: getSeasonData()
   };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
@@ -1322,6 +1907,7 @@ function importData(e) {
       if (data.keywords) { localStorage.setItem(CK_KEY, JSON.stringify(data.keywords)); }
       if (data.refs) { localStorage.setItem(CR_KEY, JSON.stringify(data.refs)); }
       if (data.memos) { localStorage.setItem(MEMO_KEY, JSON.stringify(data.memos)); }
+      if (data.seasons) { localStorage.setItem(SEASON_KEY, JSON.stringify(data.seasons)); }
       location.reload();
     } catch (err) {
       alert('파일 형식 오류');
@@ -1333,11 +1919,13 @@ function importData(e) {
 
 /* ── Init ── */
 document.addEventListener('DOMContentLoaded', function() {
-  // Keywords & refs
-  const brands = ['fepl','jemut','wv','ps','ez','fepl-s','jemut-s','wv-s','ps-s','ez-s'];
+  // Season management
+  renderSeasonTabs();
+  renderSeasonTable();
+
+  // Keywords & refs (brand-intro section)
+  const brands = ['fepl','jemut','wv','ps','ez'];
   brands.forEach(b => { renderKw(b); updateClearBtn(b); });
-  const refBrands = ['fepl-s','jemut-s','wv-s','ps-s','ez-s'];
-  refBrands.forEach(b => { renderRef(b); updateRefClearBtn(b); });
 
   // Memos
   loadMemos();
